@@ -4,7 +4,6 @@ import {
   MainContainer,
   ChatContainer,
   MessageList,
-  Message,
   MessageInput,
   TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
