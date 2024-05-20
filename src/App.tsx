@@ -10,29 +10,26 @@ import {
 } from "@chatscope/chat-ui-kit-react";
 import "./App.css";
 
-import { type MessageType } from "./models/MessageType";
-import { type ModelType } from "./models/ModelType";
-import SelectSmall from "./components/SelectSmall";
+import { type MessageType } from "./types/MessageType";
+import { type ModelType } from "./types/ModelType";
+import { MessageToRequestType } from "./types/MessageToRequestType";
+import SelectModel from "./components/SelectModel";
 import { processMessageToChatGPT } from "./utils/ProcessMessageToChatGPT";
 
 function App() {
   const [GPTModel, setGPTModel] = useState<ModelType>("gpt-3.5-turbo");
   const [typing, setTyping] = useState<boolean>(false);
-  const [messages, setMessages] = useState<MessageType[]>([
-    {
-      message: "Hello, I am ChatGPT!",
-      sender: "ChatGPT",
-      direction: "incoming",
-      position: "first",
-    },
-  ]);
+  const [messagesToRequest, setMessagesToRequest] = useState<
+    MessageToRequestType[]
+  >([]);
+  const [messages, setMessages] = useState<MessageType[]>([]);
 
   function handleChangeModel(model: ModelType) {
     setGPTModel(model);
   }
 
   const handleSend = async (message: string) => {
-    const newMessage: MessageType = {
+    const newMessage: MessageToRequestType = {
       message: message,
       sender: "user",
       direction: "outgoing",
@@ -40,12 +37,19 @@ function App() {
     };
 
     const newMessages: MessageType[] = [...messages, newMessage];
+    const newMessagesToRequest: MessageToRequestType[] = [
+      ...messagesToRequest,
+      newMessage,
+    ];
 
+    setMessagesToRequest(newMessagesToRequest);
     setMessages(newMessages);
+
     setTyping(true);
     await processMessageToChatGPT({
       GPTModel,
-      chatMessages: newMessages,
+      chatMessages: newMessagesToRequest,
+      setMessagesToRequest,
       setMessages,
       setTyping,
     });
@@ -54,17 +58,18 @@ function App() {
   return (
     <>
       <div style={{ position: "relative", height: "80vh", width: "700px" }}>
-        <SelectSmall onChangeModel={handleChangeModel} />
+        <SelectModel onChangeModel={handleChangeModel} />
         <MainContainer>
           <ChatContainer>
             <MessageList
+              autoScrollToBottom={true}
               scrollBehavior="smooth"
               typingIndicator={
                 typing ? <TypingIndicator content="ChatGPT is typing" /> : null
               }
             >
               {messages.map((message, i) => {
-                return <Message key={i} model={message} />;
+                return <div key={i}>{message.message}</div>;
               })}
             </MessageList>
             <MessageInput placeholder="Type message here" onSend={handleSend} />
