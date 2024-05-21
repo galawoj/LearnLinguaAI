@@ -1,9 +1,11 @@
 import { Dispatch, SetStateAction } from "react";
 import { type ApiMessageType } from "../types/ApiMessageType";
 import { type MessageType } from "../types/MessageType";
-import { MessageToRequestType } from "../types/MessageToRequestType";
-import { ModelType } from "../types/ModelType";
+import { type MessageToRequestType } from "../types/MessageToRequestType";
+import { type ModelType } from "../types/ModelType";
+import { type ApiRequestBodyType } from "../types/apiRequestBodyType";
 import ButtonWord from "../components/ButtonWord/ButtonWord";
+import { fetchGptResponse } from "../api/fetchGptResponse";
 
 type propsType = {
   GPTModel: ModelType;
@@ -13,7 +15,7 @@ type propsType = {
   setTyping: (typing: boolean) => void;
 };
 
-const API_KEY = import.meta.env.VITE_API_KEY;
+const API_KEY: string = import.meta.env.VITE_API_KEY;
 
 export async function processMessageToChatGPT({
   GPTModel,
@@ -37,56 +39,41 @@ export async function processMessageToChatGPT({
   //   content: "odpowiadaj zawsze po polsku",
   // };
 
-  const apiRequestBody = {
+  const apiRequestBody: ApiRequestBodyType = {
     model: GPTModel,
     messages: [...apiMessages],
     //messages: [systemMessage,...apiMessages]
   };
 
-  await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      Authorization: "Bearer " + API_KEY,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(apiRequestBody),
-  })
-    .then((data) => {
-      return data.json();
-    })
-    .then((data) => {
-      const text = "abc def";
-      console.log(text.split(" "));
-
-      const contentGPT: string = data.choices[0].message.content;
-      const messageAsButtons = contentGPT.split(" ").map((word, i) => {
-        return <ButtonWord key={i} word={word} />;
-      });
-
-      // console.log(messageAsButtons)
-      setMessages((messages) => {
-        const gptMessage: MessageType = {
-          message: messageAsButtons,
-          sender: "ChatGPT",
-          direction: "incoming",
-          position: "normal",
-        };
-        const newMessages = [...messages, gptMessage];
-        return newMessages;
-      });
-
-      setMessagesToRequest((messages) => {
-        const gptMessage: MessageToRequestType = {
-          message: contentGPT,
-          sender: "ChatGPT",
-          direction: "incoming",
-          position: "normal",
-        };
-        const newMessages = [...messages, gptMessage];
-        return newMessages;
-      });
-      setTyping(false);
+  fetchGptResponse(API_KEY, apiRequestBody).then((data) => {
+    const contentGPT: string = data.choices[0].message.content;
+    const messageAsButtons = contentGPT.split(" ").map((word, i) => {
+      return <ButtonWord key={i} word={word} />;
     });
+
+    setMessages((messages) => {
+      const gptMessage: MessageType = {
+        message: messageAsButtons,
+        sender: "ChatGPT",
+        direction: "incoming",
+        position: "normal",
+      };
+      const newMessages = [...messages, gptMessage];
+      return newMessages;
+    });
+
+    setMessagesToRequest((messages) => {
+      const gptMessage: MessageToRequestType = {
+        message: contentGPT,
+        sender: "ChatGPT",
+        direction: "incoming",
+        position: "normal",
+      };
+      const newMessages = [...messages, gptMessage];
+      return newMessages;
+    });
+    setTyping(false);
+  });
 }
 
 // Here are some helpful rules of thumb for understanding tokens in terms of lengths:
