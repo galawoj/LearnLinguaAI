@@ -1,4 +1,4 @@
-import {type ApiRequestBodyType } from "../types/ApiRequestBodyType";
+import { ApiRequestBodyType } from "../types/apiRequestBodyType";
 
 export async function fetchGptResponse(apiKey:string,apiRequestBody:ApiRequestBodyType){
     return fetch("https://api.openai.com/v1/chat/completions", {
