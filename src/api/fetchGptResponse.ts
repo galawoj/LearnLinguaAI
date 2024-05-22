@@ -1,10 +1,12 @@
 import { ApiRequestBodyType } from "../types/apiRequestBodyType";
 
-export async function fetchGptResponse(apiKey:string,apiRequestBody:ApiRequestBodyType){
+const API_KEY: string = import.meta.env.VITE_API_KEY;
+
+export async function fetchGptResponse(apiRequestBody:ApiRequestBodyType){
     return fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
         headers: {
-          Authorization: "Bearer " + apiKey,
+          Authorization: "Bearer " + API_KEY,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(apiRequestBody),

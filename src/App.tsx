@@ -12,7 +12,7 @@ import "./App.css";
 import { type MessageType } from "./types/MessageType";
 import { type ModelType } from "./types/ModelType";
 import { MessageToRequestType } from "./types/MessageToRequestType";
-import SelectModel from "./components/SelectModel";
+import SelectModel from "./components/SelectModel/SelectModel";
 import { processMessageToChatGPT } from "./utils/ProcessMessageToChatGPT";
 
 function App() {

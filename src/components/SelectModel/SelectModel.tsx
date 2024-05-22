@@ -3,7 +3,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { type ModelType } from "../types/ModelType";
+import { type ModelType } from "../../types/ModelType";
 
 type propsModel = {
   onChangeModel: (model: ModelType) => void;

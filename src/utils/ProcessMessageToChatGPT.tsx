@@ -15,8 +15,6 @@ type propsType = {
   setTyping: (typing: boolean) => void;
 };
 
-const API_KEY: string = import.meta.env.VITE_API_KEY;
-
 export async function processMessageToChatGPT({
   GPTModel,
   chatMessages,
@@ -45,10 +43,10 @@ export async function processMessageToChatGPT({
     //messages: [systemMessage,...apiMessages]
   };
 
-  fetchGptResponse(API_KEY, apiRequestBody).then((data) => {
+  fetchGptResponse(apiRequestBody).then((data) => {
     const contentGPT: string = data.choices[0].message.content;
     const messageAsButtons = contentGPT.split(" ").map((word, i) => {
-      return <ButtonWord key={i} word={word} />;
+      return <ButtonWord GPTModel={GPTModel} key={i} word={word} />;
     });
 
     setMessages((messages) => {
