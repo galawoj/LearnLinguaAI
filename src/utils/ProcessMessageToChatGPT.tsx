@@ -3,7 +3,7 @@ import { type ApiMessageType } from "../types/ApiMessageType";
 import { type MessageType } from "../types/MessageType";
 import { type MessageToRequestType } from "../types/MessageToRequestType";
 import { type ModelType } from "../types/ModelType";
-import { type ApiRequestBodyType } from "../types/apiRequestBodyType";
+import { type ApiRequestBodyType } from "../types/ApiRequestBodyType";
 import ButtonWord from "../components/ButtonWord/ButtonWord";
 import { fetchGptResponse } from "../api/fetchGptResponse";
 

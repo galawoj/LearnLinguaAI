@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./buttonWord.module.scss";
-import { type ApiRequestBodyType } from "../../types/apiRequestBodyType";
+import { type ApiRequestBodyType } from "../../types/ApiRequestBodyType";
 import { ModelType } from "../../types/ModelType";
 import { fetchGptResponse } from "../../api/fetchGptResponse";
 

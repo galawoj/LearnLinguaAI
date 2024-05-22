@@ -1,4 +1,4 @@
-import { ApiRequestBodyType } from "../types/apiRequestBodyType";
+import { ApiRequestBodyType } from "../types/ApiRequestBodyType";
 
 const API_KEY: string = import.meta.env.VITE_API_KEY;
 
