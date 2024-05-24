@@ -2,6 +2,7 @@ import { type MessageDirection } from "@chatscope/chat-ui-kit-react/src/types/un
 
 
 export type MessageType = {
+    id:string;
     message: JSX.Element[]|string ;
     sender: "ChatGPT" | "user";
     direction: MessageDirection;

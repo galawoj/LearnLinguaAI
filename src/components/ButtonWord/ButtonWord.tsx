@@ -38,7 +38,12 @@ export default function ButtonWord({ word, GPTModel }: propsType) {
   }
 
   return (
-    <button onClick={buttonHandler} className={styles.button}>
+    <button
+      onClick={buttonHandler}
+      className={`${styles.button} ${
+        textTranslated === buttonText ? styles.clicked : ""
+      }`}
+    >
       {buttonText}&nbsp;
     </button>
   );

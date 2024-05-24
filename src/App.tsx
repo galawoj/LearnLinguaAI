@@ -1,12 +1,5 @@
 import { useState } from "react";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.css";
-import {
-  MainContainer,
-  ChatContainer,
-  MessageList,
-  MessageInput,
-  TypingIndicator,
-} from "@chatscope/chat-ui-kit-react";
 import "./App.css";
 
 import { type MessageType } from "./types/MessageType";
@@ -22,27 +15,28 @@ function App() {
     MessageToRequestType[]
   >([]);
   const [messages, setMessages] = useState<MessageType[]>([]);
+  const [isFirstText, setIsFirstText] = useState<boolean>(true);
 
   function handleChangeModel(model: ModelType) {
     setGPTModel(model);
   }
 
-  const handleSend = async (message: string) => {
+  const generateHandle = async () => {
     const newMessage: MessageToRequestType = {
-      message: message,
+      message: isFirstText
+        ? "wygeneruj tekst po angielsku na 50 słów na poziomie C1"
+        : "kontynułuj poprzedni tekst generując kolejne 50 słów na poziomie C1",
       sender: "user",
       direction: "outgoing",
       position: "normal",
     };
 
-    const newMessages: MessageType[] = [...messages, newMessage];
     const newMessagesToRequest: MessageToRequestType[] = [
       ...messagesToRequest,
       newMessage,
     ];
 
     setMessagesToRequest(newMessagesToRequest);
-    setMessages(newMessages);
 
     setTyping(true);
     await processMessageToChatGPT({
@@ -52,28 +46,23 @@ function App() {
       setMessages,
       setTyping,
     });
+
+    setIsFirstText(false);
   };
+
+  const textFromGpt = messages.map(({ message, id }) => {
+    return <div key={id}>{message}</div>;
+  });
 
   return (
     <>
-      <div style={{ position: "relative", height: "80vh", width: "700px" }}>
+      <div style={{ position: "relative", height: "100vh", width: "700px" }}>
         <SelectModel onChangeModel={handleChangeModel} />
-        <MainContainer>
-          <ChatContainer>
-            <MessageList
-              autoScrollToBottom={true}
-              scrollBehavior="smooth"
-              typingIndicator={
-                typing ? <TypingIndicator content="ChatGPT is typing" /> : null
-              }
-            >
-              {messages.map((message, i) => {
-                return <div key={i}>{message.message}</div>;
-              })}
-            </MessageList>
-            <MessageInput placeholder="Type message here" onSend={handleSend} />
-          </ChatContainer>
-        </MainContainer>
+        {textFromGpt}
+        {typing}
+        <button onClick={generateHandle}>
+          {isFirstText ? "start" : "continue"}
+        </button>
       </div>
     </>
   );
