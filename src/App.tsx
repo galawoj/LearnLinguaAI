@@ -4,9 +4,9 @@ import "./App.css";
 
 import { type MessageType } from "./types/MessageType";
 import { type ModelType } from "./types/ModelType";
-import { MessageToRequestType } from "./types/MessageToRequestType";
-import SelectModel from "./components/SelectModel/SelectModel";
+import { type MessageToRequestType } from "./types/MessageToRequestType";
 import { processMessageToChatGPT } from "./utils/ProcessMessageToChatGPT";
+import SelectModel from "./components/SelectModel/SelectModel";
 
 function App() {
   const [GPTModel, setGPTModel] = useState<ModelType>("gpt-3.5-turbo");
@@ -50,19 +50,26 @@ function App() {
     setIsFirstText(false);
   };
 
-  const textFromGpt = messages.map(({ message, id }) => {
-    return <div key={id}>{message}</div>;
+  const gptMessage = messages.map(({ message, id }) => {
+    return (
+      <div className="message" key={id}>
+        {message}
+      </div>
+    );
   });
 
   return (
     <>
       <div style={{ position: "relative", height: "100vh", width: "700px" }}>
         <SelectModel onChangeModel={handleChangeModel} />
-        {textFromGpt}
-        {typing}
-        <button onClick={generateHandle}>
-          {isFirstText ? "start" : "continue"}
-        </button>
+        {gptMessage}
+        {typing ? (
+          <span className="loader"></span>
+        ) : (
+          <button onClick={generateHandle}>
+            {isFirstText ? "start" : "continue"}
+          </button>
+        )}
       </div>
     </>
   );
