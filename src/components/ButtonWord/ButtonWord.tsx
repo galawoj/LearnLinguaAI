@@ -17,7 +17,7 @@ export default function ButtonWord({ word, GPTModel }: propsType) {
     model: GPTModel,
     messages: [
       {
-        content: `przetłumacz na język polski słowo '${word}'. Wygeneruj tylko jedno znaczenie, "nie rozwijaj tlumaczenia, tylko wygeneruj to tłumaczenie`,
+        content: `przetłumacz na język polski słowo '${word}'.Przetłumacz jedno znaczenie, nie rozwijaj tłumaczenia`,
         role: "user",
       },
     ],
