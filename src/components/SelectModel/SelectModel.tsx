@@ -4,12 +4,11 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { type ModelType } from "../../types/ModelType";
+import { useAppContext } from "../../store/app-context";
 
-type propsModel = {
-  onChangeModel: (model: ModelType) => void;
-};
+export default function SelectModel() {
+  const { handleChangeModel: onChangeModel } = useAppContext();
 
-export default function SelectModel({ onChangeModel }: propsModel) {
   const [model, setModel] = React.useState("gpt-3.5-turbo");
 
   const handleChange = (event: SelectChangeEvent) => {

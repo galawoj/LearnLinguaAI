@@ -1,17 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./buttonWord.module.scss";
 import { type ApiRequestBodyType } from "../../types/ApiRequestBodyType";
-import { ModelType } from "../../types/ModelType";
 import { fetchGptResponse } from "../../api/fetchGptResponse";
+import { useAppContext } from "../../store/app-context";
 
 type propsType = {
   word: string;
-  GPTModel: ModelType;
 };
 
-export default function ButtonWord({ word, GPTModel }: propsType) {
+export default function ButtonWord({ word }: propsType) {
+  const { GPTModel, translationReset, handleTranslationReset } =
+    useAppContext();
+
   const [buttonText, setButtonText] = useState<string>(word);
   const [textTranslated, setTextTranslated] = useState<string>("");
+
+  useEffect(() => {
+    if (translationReset) {
+      setButtonText(word);
+    }
+  }, [translationReset]);
 
   const apiRequestBody: ApiRequestBodyType = {
     model: GPTModel,
@@ -35,6 +43,8 @@ export default function ButtonWord({ word, GPTModel }: propsType) {
     } else {
       setButtonText(textTranslated);
     }
+
+    handleTranslationReset(false);
   }
 
   return (
