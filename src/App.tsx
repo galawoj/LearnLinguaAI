@@ -1,5 +1,5 @@
 import "./App.css";
-import { TextGenerator } from "./pages/TextGenerator/TextGenerator";
+//import { TextGenerator } from "./pages/TextGenerator/TextGenerator";
 import { AppContextProvider } from "./store/app-context";
 
 function App() {
