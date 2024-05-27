@@ -5,7 +5,16 @@ import { AppContextProvider } from "./store/app-context";
 function App() {
   return (
     <AppContextProvider>
-      <TextGenerator />
+      <div className="background">
+        <div className="shape"></div>
+        <div className="shape"></div>
+      </div>
+      <form action="">
+        <h3>
+          Welcome Back!
+          <span>hi</span>
+        </h3>
+      </form>
     </AppContextProvider>
   );
 }
