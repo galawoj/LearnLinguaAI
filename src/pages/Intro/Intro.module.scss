@@ -10,7 +10,7 @@
     }
     
     .card{
-        color: #ffffff;
+    color: #ffffff;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -31,7 +31,8 @@
     }
     
     .card *{
-      font-family: 'Poppins',sans-serif;
+
+
       letter-spacing: 0.5px;
       outline: none;
       border:none;
@@ -55,7 +56,7 @@
     
     }
     
-    #root .shape{
+     .shape{
       height:200px;
       width:200px;
       position:absolute;
