@@ -1,4 +1,12 @@
+import ButtonGenerator from "../../components/ButtonGenerator/ButtonGenerator";
+import SelectModel from "../../components/SelectModel/SelectModel";
+import { TextGenerator } from "../../components/TextGenerator/TextGenerator";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClipboard, faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import { faGear } from "@fortawesome/free-solid-svg-icons";
+
 import "./mainApp.scss";
+import LanguageLevel from "../../components/LanguageLevel/LanguageLevel";
 
 export default function MainApp() {
   return (
@@ -9,37 +17,35 @@ export default function MainApp() {
         <input type="radio" name="group" id="setting" />
         <input type="radio" name="group" id="security" />
         <div className="icon">
-          <label htmlFor="home">1</label>
-          <label htmlFor="about">2</label>
-          <label htmlFor="setting">3</label>
-          <label htmlFor="security">4</label>
+          <label htmlFor="home">
+            <FontAwesomeIcon icon={faBookOpen} />
+          </label>
+          <label htmlFor="about">
+            <FontAwesomeIcon icon={faClipboard} />
+          </label>
+          <label htmlFor="setting">
+            <FontAwesomeIcon icon={faGear} />
+          </label>
+          <label htmlFor="security"></label>
           <div className="indicator"></div>
         </div>
         <div className="content">
           <div className="contentBx" data-for="home">
             <h2>Home</h2>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga,
-              eius ratione ipsum animi dolorem laudantium dicta distinctio
-              repellendus, quidem est numquam labo
-            </p>
+
+            <TextGenerator />
+            <ButtonGenerator />
           </div>
           <div className="contentBx" data-for="about">
-            <h2>About</h2>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga,
-              eius ratione ipsum animi dolorem laudantium dicta distinctio
-              repellendus, quidem est numquam laboriosam unde expedita vitae.{" "}
-            </p>
+            <h2>Dictionary</h2>
+            <p></p>
           </div>
           <div className="contentBx" data-for="setting">
             <h2>Setting</h2>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga,
-              eius ratione ipsum animi dolorem laudantium dicta distinctio
-              repellendus, quidem est numquam laboriosam unde expedita vitae.
-              Officiis atque impedit asperiores consectetur.
-            </p>
+            <div>
+              <SelectModel />
+              <LanguageLevel />
+            </div>
           </div>
           <div className="contentBx" data-for="security">
             <h2>Security</h2>

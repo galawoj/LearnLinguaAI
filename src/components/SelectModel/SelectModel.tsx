@@ -18,7 +18,7 @@ export default function SelectModel() {
   };
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+    <FormControl fullWidth margin="normal">
       <InputLabel id="demo-select-small-label">model</InputLabel>
       <Select
         labelId="demo-select-small-label"

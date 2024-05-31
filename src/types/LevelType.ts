@@ -1,0 +1,1 @@
+export type LevelType = "A1 Beginner" | "A2 Pre-intermediate" | "B1 Lower intermediate"|"B2 Upper intermediate"|"C1 Advanced"|"C2 Proficient";

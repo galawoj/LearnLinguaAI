@@ -4,15 +4,18 @@ import { type MessageType } from "../types/MessageType";
 import { type ModelType } from "../types/ModelType";
 import { type MessageToRequestType } from "../types/MessageToRequestType";
 import { processMessageToChatGPT } from "../utils/ProcessMessageToChatGPT";
+import { LevelType } from "../types/LevelType";
 
 type AppContexType = {
   typing: boolean;
   messages: MessageType[];
   isFirstText: boolean;
   GPTModel: ModelType;
+  languageLevel: LevelType;
   translationReset: boolean;
 
   handleChangeModel: (model: ModelType) => void;
+  handleChangeLevel: (level: LevelType) => void;
   generateHandle: () => void;
   handleTranslationReset: (value: boolean) => void;
 };
@@ -33,6 +36,9 @@ export function useAppContext() {
 }
 
 export function AppContextProvider({ children }: PropsAppContextProvider) {
+  const [languageLevel, setLanguageLevel] = useState<LevelType>(
+    "B2 Upper intermediate"
+  );
   const [GPTModel, setGPTModel] = useState<ModelType>("gpt-3.5-turbo");
   const [typing, setTyping] = useState<boolean>(false);
   const [messagesToRequest, setMessagesToRequest] = useState<
@@ -46,6 +52,10 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     setGPTModel(model);
   }
 
+  function handleChangeLevel(level: LevelType) {
+    setLanguageLevel(level);
+  }
+
   function handleTranslationReset(value: boolean) {
     setTransaltionReset(value);
   }
@@ -53,8 +63,8 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
   const generateHandle = async () => {
     const newMessage: MessageToRequestType = {
       message: isFirstText
-        ? "wygeneruj tekst po angielsku na 50 słów na poziomie C1"
-        : "kontynułuj poprzedni tekst generując kolejne 50 słów na poziomie C1",
+        ? `enerate a 50-word English text at ${languageLevel} level`
+        : `Continue the previous text by generating another 50 words at ${languageLevel} level`,
       sender: "user",
       direction: "outgoing",
       position: "normal",
@@ -85,9 +95,11 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     messages: messages,
     isFirstText: isFirstText,
     GPTModel: GPTModel,
+    languageLevel: languageLevel,
     translationReset: translationReset,
 
     handleChangeModel: handleChangeModel,
+    handleChangeLevel: handleChangeLevel,
     generateHandle: generateHandle,
     handleTranslationReset: handleTranslationReset,
   };

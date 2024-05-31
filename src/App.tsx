@@ -8,7 +8,7 @@ import { AppContextProvider } from "./store/app-context";
 function App() {
   return (
     <AppContextProvider>
-      <Intro />
+      {/* <Intro /> */}
       <MainApp />
     </AppContextProvider>
   );

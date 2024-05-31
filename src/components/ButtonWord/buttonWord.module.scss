@@ -2,10 +2,12 @@
 padding:0px;
 border: none;
 background-color:transparent;
+
 }
 
 .button:hover{
   border: 1px solid blueviolet;
+  cursor:pointer;
 }
 
 .clicked{

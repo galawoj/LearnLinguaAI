@@ -48,13 +48,13 @@ export default function ButtonWord({ word }: propsType) {
   }
 
   return (
-    <button
+    <span
       onClick={buttonHandler}
       className={`${styles.button} ${
         textTranslated === buttonText ? styles.clicked : ""
       }`}
     >
       {buttonText}&nbsp;
-    </button>
+    </span>
   );
 }
