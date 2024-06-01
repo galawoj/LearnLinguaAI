@@ -19,26 +19,28 @@ export default function LanguageLevel() {
 
   return (
     <FormControl fullWidth margin="normal">
-      <InputLabel id="demo-select-small-label">
-        poziom znajomości języka
-      </InputLabel>
       <Select
-        labelId="demo-select-small-label"
         id="demo-select-small"
         value={level}
-        label="model"
         onChange={handleChange}
+        sx={{
+          color: "inherit",
+          font: "inherit",
+          fontSize: "14px",
+          fontWeight: "300",
+          backgroundColor: "rgba(255,255,255,0.07)",
+        }}
       >
-        <MenuItem value={"A1 Beginner"}>Początkujący</MenuItem>
-        <MenuItem value={"A2 Pre-intermediate"}>Podstawowy</MenuItem>
+        <MenuItem value={"A1 Beginner"}>Początkujący (A1)</MenuItem>
+        <MenuItem value={"A2 Pre-intermediate"}>Podstawowy (A2)</MenuItem>
         <MenuItem value={"B1 Lower intermediate"}>
-          Niższy średnio zaawansowany
+          Niższy średnio zaawansowany (B1)
         </MenuItem>
         <MenuItem value={"B2 Upper intermediate"}>
-          Wyższy średnio zaawansowany
+          Wyższy średnio zaawansowany (B2)
         </MenuItem>
-        <MenuItem value={"C1 Advanced"}>Zaawansowany</MenuItem>
-        <MenuItem value={"C2 Proficient"}>Biegły/profesjonalny</MenuItem>
+        <MenuItem value={"C1 Advanced"}>Zaawansowany (C1)</MenuItem>
+        <MenuItem value={"C2 Proficient"}>Biegły/profesjonalny (C2)</MenuItem>
       </Select>
     </FormControl>
   );

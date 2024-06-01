@@ -1,5 +1,5 @@
 import * as React from "react";
-import InputLabel from "@mui/material/InputLabel";
+
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
@@ -19,14 +19,7 @@ export default function SelectModel() {
 
   return (
     <FormControl fullWidth margin="normal">
-      <InputLabel id="demo-select-small-label">model</InputLabel>
-      <Select
-        labelId="demo-select-small-label"
-        id="demo-select-small"
-        value={model}
-        label="model"
-        onChange={handleChange}
-      >
+      <Select id="demo-select-small" value={model} onChange={handleChange}>
         <MenuItem value={"gpt-4o"}>GPT-4o New</MenuItem>
         <MenuItem value={"gpt-4-turbo"}>GPT-4 Turbo</MenuItem>
         <MenuItem value={"gpt-3.5-turbo"}>GPT-3.5 Turbo</MenuItem>

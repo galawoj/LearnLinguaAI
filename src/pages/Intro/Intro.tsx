@@ -1,4 +1,4 @@
-import styles from "./Intro.module.scss";
+import styles from "./intro.module.scss";
 import TypingText from "../../components/TypingText/TypingText";
 
 export default function Intro() {
