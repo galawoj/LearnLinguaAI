@@ -19,7 +19,18 @@ export default function SelectModel() {
 
   return (
     <FormControl fullWidth margin="normal">
-      <Select id="demo-select-small" value={model} onChange={handleChange}>
+      <Select
+        id="demo-select-small"
+        value={model}
+        onChange={handleChange}
+        sx={{
+          color: "inherit",
+          font: "inherit",
+          fontSize: "14px",
+          fontWeight: "300",
+          backgroundColor: "rgba(255,255,255,0.07)",
+        }}
+      >
         <MenuItem value={"gpt-4o"}>GPT-4o New</MenuItem>
         <MenuItem value={"gpt-4-turbo"}>GPT-4 Turbo</MenuItem>
         <MenuItem value={"gpt-3.5-turbo"}>GPT-3.5 Turbo</MenuItem>

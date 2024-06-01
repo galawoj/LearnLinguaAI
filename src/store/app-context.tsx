@@ -13,11 +13,13 @@ type AppContexType = {
   GPTModel: ModelType;
   languageLevel: LevelType;
   translationReset: boolean;
+  textTopic: string;
 
   handleChangeModel: (model: ModelType) => void;
   handleChangeLevel: (level: LevelType) => void;
   generateHandle: () => void;
   handleTranslationReset: (value: boolean) => void;
+  handleTextTopic: (text: string) => void;
 };
 
 const AppContext = createContext<AppContexType | null>(null);
@@ -47,6 +49,7 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
   const [messages, setMessages] = useState<MessageType[]>([]);
   const [isFirstText, setIsFirstText] = useState<boolean>(true);
   const [translationReset, setTransaltionReset] = useState<boolean>(false);
+  const [textTopic, setTextTopic] = useState<string>("");
 
   function handleChangeModel(model: ModelType) {
     setGPTModel(model);
@@ -60,10 +63,14 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     setTransaltionReset(value);
   }
 
+  function handleTextTopic(text: string) {
+    setTextTopic(text);
+  }
+
   const generateHandle = async () => {
     const newMessage: MessageToRequestType = {
       message: isFirstText
-        ? `enerate a 50-word English text at ${languageLevel} level`
+        ? `generate a 50-word English text at ${languageLevel} level on the topic ${textTopic}`
         : `Continue the previous text by generating another 50 words at ${languageLevel} level`,
       sender: "user",
       direction: "outgoing",
@@ -76,8 +83,8 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     ];
 
     setMessagesToRequest(newMessagesToRequest);
-
     setTyping(true);
+
     await processMessageToChatGPT({
       GPTModel,
       chatMessages: newMessagesToRequest,
@@ -97,11 +104,13 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     GPTModel: GPTModel,
     languageLevel: languageLevel,
     translationReset: translationReset,
+    textTopic: textTopic,
 
     handleChangeModel: handleChangeModel,
     handleChangeLevel: handleChangeLevel,
     generateHandle: generateHandle,
     handleTranslationReset: handleTranslationReset,
+    handleTextTopic: handleTextTopic,
   };
   return <AppContext.Provider value={ctxValue}>{children}</AppContext.Provider>;
 }

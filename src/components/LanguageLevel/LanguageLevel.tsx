@@ -1,5 +1,5 @@
 import * as React from "react";
-import InputLabel from "@mui/material/InputLabel";
+
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
@@ -7,13 +7,13 @@ import { type LevelType } from "../../types/LevelType";
 import { useAppContext } from "../../store/app-context";
 
 export default function LanguageLevel() {
-  const { handleChangeLevel: onChangeLevel } = useAppContext();
+  const { handleChangeLevel: onChangeLevel, languageLevel } = useAppContext();
 
-  const [level, setLevel] = React.useState("B2 Upper intermediate");
+  // const [level, setLevel] = React.useState("B2 Upper intermediate");
 
   const handleChange = (event: SelectChangeEvent) => {
     const eventValue = event.target.value as LevelType;
-    setLevel(eventValue);
+    // setLevel(eventValue);
     onChangeLevel(eventValue);
   };
 
@@ -21,7 +21,7 @@ export default function LanguageLevel() {
     <FormControl fullWidth margin="normal">
       <Select
         id="demo-select-small"
-        value={level}
+        value={languageLevel}
         onChange={handleChange}
         sx={{
           color: "inherit",

@@ -1,7 +1,12 @@
 import styles from "./intro.module.scss";
 import TypingText from "../../components/TypingText/TypingText";
+import { TogglePages } from "../../types/TogglePages";
 
-export default function Intro() {
+type IntroProps = {
+  onHandleChangePage: (page: TogglePages) => void;
+};
+
+export default function Intro({ onHandleChangePage }: IntroProps) {
   return (
     <>
       <div className={styles.background}>
@@ -17,7 +22,7 @@ export default function Intro() {
             }
           />
         </span>
-        <button>ok</button>
+        <button onClick={() => onHandleChangePage("form")}>ok</button>
       </div>
     </>
   );
