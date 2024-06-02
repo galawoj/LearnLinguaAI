@@ -7,6 +7,7 @@ import { faGear } from "@fortawesome/free-solid-svg-icons";
 import styles from "./mainApp.module.scss";
 
 import LanguageLevel from "../../components/LanguageLevel/LanguageLevel";
+import TextTitle from "../../components/TextTitle/TextTitle";
 
 export default function MainApp() {
   return (
@@ -33,7 +34,9 @@ export default function MainApp() {
         </div>
         <div className={styles.content}>
           <div className={styles.contentBx} data-for="home">
-            <h2>Home</h2>
+            <h2>
+              <TextTitle />
+            </h2>
 
             <TextGenerator />
             <ButtonGenerator />
@@ -45,13 +48,13 @@ export default function MainApp() {
           <div className={styles.contentBx} data-for="setting">
             <h2>Setting</h2>
             <div>
-              <SelectModel />
+              <label>Poziom języka</label>
               <LanguageLevel />
             </div>
           </div>
           <div className={styles.contentBx} data-for="security">
             <h2>Security</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur </p>
+            <SelectModel />
           </div>
         </div>
       </div>

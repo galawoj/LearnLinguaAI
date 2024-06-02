@@ -9,6 +9,7 @@ import { LevelType } from "../types/LevelType";
 type AppContexType = {
   typing: boolean;
   messages: MessageType[];
+  messagesToRequest: MessageToRequestType[];
   isFirstText: boolean;
   GPTModel: ModelType;
   languageLevel: LevelType;
@@ -100,6 +101,7 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
   const ctxValue: AppContexType = {
     typing: typing,
     messages: messages,
+    messagesToRequest: messagesToRequest,
     isFirstText: isFirstText,
     GPTModel: GPTModel,
     languageLevel: languageLevel,
