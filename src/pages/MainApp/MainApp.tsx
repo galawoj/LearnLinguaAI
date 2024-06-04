@@ -7,7 +7,7 @@ import { faGear } from "@fortawesome/free-solid-svg-icons";
 import styles from "./mainApp.module.scss";
 
 import LanguageLevel from "../../components/LanguageLevel/LanguageLevel";
-import TextTitle from "../../components/TextTitle/TextTitle";
+// import TextTitle from "../../components/TextTitle/TextTitle";
 import Dictionary from "../../components/Dictionary/Dictionary";
 
 export default function MainApp() {
