@@ -3,6 +3,7 @@ import { createContext, ReactNode, useContext, useState } from "react";
 import { type MessageType } from "../types/MessageType";
 import { type ModelType } from "../types/ModelType";
 import { type MessageToRequestType } from "../types/MessageToRequestType";
+import { type DictionaryElement } from "../types/DisctionaryElementType";
 import { processMessageToChatGPT } from "../utils/ProcessMessageToChatGPT";
 import { LevelType } from "../types/LevelType";
 
@@ -15,12 +16,14 @@ type AppContexType = {
   languageLevel: LevelType;
   translationReset: boolean;
   textTopic: string;
+  dictionaryList: DictionaryElement[];
 
   handleChangeModel: (model: ModelType) => void;
   handleChangeLevel: (level: LevelType) => void;
   generateHandle: () => void;
   handleTranslationReset: (value: boolean) => void;
   handleTextTopic: (text: string) => void;
+  dictionaryAddElement: (element: DictionaryElement) => void;
 };
 
 const AppContext = createContext<AppContexType | null>(null);
@@ -51,6 +54,7 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
   const [isFirstText, setIsFirstText] = useState<boolean>(true);
   const [translationReset, setTransaltionReset] = useState<boolean>(false);
   const [textTopic, setTextTopic] = useState<string>("");
+  const [dictionaryList, setDictionaryList] = useState<DictionaryElement[]>([]);
 
   function handleChangeModel(model: ModelType) {
     setGPTModel(model);
@@ -66,6 +70,17 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
 
   function handleTextTopic(text: string) {
     setTextTopic(text);
+  }
+
+  function dictionaryAddElement(element: DictionaryElement) {
+    if (dictionaryList.some((item) => item.word === element.word)) {
+      return;
+    }
+
+    setDictionaryList((dictionary) => {
+      const updatedDictionary = [...dictionary, element];
+      return updatedDictionary;
+    });
   }
 
   const generateHandle = async () => {
@@ -107,12 +122,14 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     languageLevel: languageLevel,
     translationReset: translationReset,
     textTopic: textTopic,
+    dictionaryList: dictionaryList,
 
     handleChangeModel: handleChangeModel,
     handleChangeLevel: handleChangeLevel,
     generateHandle: generateHandle,
     handleTranslationReset: handleTranslationReset,
     handleTextTopic: handleTextTopic,
+    dictionaryAddElement: dictionaryAddElement,
   };
   return <AppContext.Provider value={ctxValue}>{children}</AppContext.Provider>;
 }

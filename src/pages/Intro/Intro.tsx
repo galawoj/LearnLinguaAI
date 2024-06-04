@@ -1,6 +1,6 @@
 import styles from "./intro.module.scss";
 import TypingText from "../../components/TypingText/TypingText";
-import { TogglePages } from "../../types/TogglePages";
+import { TogglePages } from "../../types/TogglePagesType";
 
 type IntroProps = {
   onHandleChangePage: (page: TogglePages) => void;

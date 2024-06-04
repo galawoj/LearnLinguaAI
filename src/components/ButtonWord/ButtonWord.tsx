@@ -6,11 +6,16 @@ import { useAppContext } from "../../store/app-context";
 
 type propsType = {
   word: string;
+  id: string;
 };
 
-export default function ButtonWord({ word }: propsType) {
-  const { GPTModel, translationReset, handleTranslationReset } =
-    useAppContext();
+export default function ButtonWord({ word, id }: propsType) {
+  const {
+    GPTModel,
+    translationReset,
+    handleTranslationReset,
+    dictionaryAddElement,
+  } = useAppContext();
 
   const [buttonText, setButtonText] = useState<string>(word);
   const [textTranslated, setTextTranslated] = useState<string>("");
@@ -37,6 +42,11 @@ export default function ButtonWord({ word }: propsType) {
         const contentGPT: string = data.choices[0].message.content;
         setTextTranslated(contentGPT);
         setButtonText(contentGPT);
+        dictionaryAddElement({
+          word: word,
+          translatedWord: contentGPT,
+          id: id,
+        });
       });
     } else if (textTranslated === buttonText) {
       setButtonText(word);

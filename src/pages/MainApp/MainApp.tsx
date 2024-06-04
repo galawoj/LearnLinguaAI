@@ -8,6 +8,7 @@ import styles from "./mainApp.module.scss";
 
 import LanguageLevel from "../../components/LanguageLevel/LanguageLevel";
 import TextTitle from "../../components/TextTitle/TextTitle";
+import Dictionary from "../../components/Dictionary/Dictionary";
 
 export default function MainApp() {
   return (
@@ -34,16 +35,15 @@ export default function MainApp() {
         </div>
         <div className={styles.content}>
           <div className={styles.contentBx} data-for="home">
-            <h2>
-              <TextTitle />
-            </h2>
+            <h2>{/* <TextTitle /> */}title</h2>
 
             <TextGenerator />
             <ButtonGenerator />
           </div>
           <div className={styles.contentBx} data-for="about">
             <h2>Dictionary</h2>
-            <p></p>
+
+            <Dictionary />
           </div>
           <div className={styles.contentBx} data-for="setting">
             <h2>Setting</h2>

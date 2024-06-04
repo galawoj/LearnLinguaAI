@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { type TogglePages } from "./types/TogglePages";
+import { type TogglePages } from "./types/TogglePagesType";
 import Form from "./pages/Form/Form";
 import Intro from "./pages/Intro/Intro";
 import MainApp from "./pages/MainApp/MainApp";

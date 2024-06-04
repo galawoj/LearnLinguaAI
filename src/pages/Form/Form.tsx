@@ -2,7 +2,7 @@ import { useRef, FormEvent } from "react";
 import LanguageLevel from "../../components/LanguageLevel/LanguageLevel";
 import styles from "./form.module.scss";
 import { useAppContext } from "../../store/app-context";
-import { TogglePages } from "../../types/TogglePages";
+import { TogglePages } from "../../types/TogglePagesType";
 
 type FormProps = {
   onHandleChangePage: (page: TogglePages) => void;

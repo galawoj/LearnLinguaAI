@@ -46,7 +46,7 @@ export async function processMessageToChatGPT({
   fetchGptResponse(apiRequestBody).then((data) => {
     const contentGPT: string = data.choices[0].message.content;
     const messageAsButtons = contentGPT.split(" ").map((word, i) => {
-      return <ButtonWord key={word + i} word={word} />;
+      return <ButtonWord key={word + i} word={word} id={word + i} />;
     });
 
     setMessages((messages) => {
