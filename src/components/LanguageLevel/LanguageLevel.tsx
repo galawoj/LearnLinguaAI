@@ -5,7 +5,7 @@ import { type LevelType } from "../../types/LevelType";
 import { useAppContext } from "../../store/app-context";
 
 export default function LanguageLevel() {
-  const { handleChangeLevel: onChangeLevel, languageLevel } = useAppContext();
+  const { setLanguageLevel: onChangeLevel, languageLevel } = useAppContext();
 
   // const [level, setLevel] = React.useState("B2 Upper intermediate");
 

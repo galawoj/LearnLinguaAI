@@ -9,12 +9,12 @@ type FormProps = {
 };
 
 export default function Form({ onHandleChangePage }: FormProps) {
-  const { handleTextTopic } = useAppContext();
+  const { setTextTopic } = useAppContext();
   const textArea = useRef<HTMLTextAreaElement>(null);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    handleTextTopic(textArea.current?.value as string);
+    setTextTopic(textArea.current?.value as string);
     onHandleChangePage("mainApp");
   }
 

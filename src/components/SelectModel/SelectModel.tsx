@@ -7,7 +7,7 @@ import { type ModelType } from "../../types/ModelType";
 import { useAppContext } from "../../store/app-context";
 
 export default function SelectModel() {
-  const { handleChangeModel: onChangeModel } = useAppContext();
+  const { setGPTModel: onChangeModel } = useAppContext();
 
   const [model, setModel] = React.useState("gpt-3.5-turbo");
 

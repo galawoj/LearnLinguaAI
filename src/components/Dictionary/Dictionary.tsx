@@ -6,12 +6,8 @@ export default function Dictionary() {
   const { dictionaryList } = useAppContext();
 
   const listElement = dictionaryList.map((e) => (
-    <li className={styles.listElement}>
-      <DictionaryButton
-        id={e.id}
-        word={e.word}
-        translatedWord={e.translatedWord}
-      />
+    <li key={e.id} className={styles.listElement}>
+      <DictionaryButton word={e.word} translatedWord={e.translatedWord} />
     </li>
   ));
 

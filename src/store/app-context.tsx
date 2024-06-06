@@ -18,11 +18,12 @@ type AppContexType = {
   textTopic: string;
   dictionaryList: DictionaryElement[];
 
-  handleChangeModel: (model: ModelType) => void;
-  handleChangeLevel: (level: LevelType) => void;
+  setIsFirstText: (value: boolean) => void;
+  setGPTModel: (model: ModelType) => void;
+  setLanguageLevel: (level: LevelType) => void;
   generateHandle: () => void;
-  handleTranslationReset: (value: boolean) => void;
-  handleTextTopic: (text: string) => void;
+  setTransaltionReset: (value: boolean) => void;
+  setTextTopic: (text: string) => void;
   dictionaryAddElement: (element: DictionaryElement) => void;
 };
 
@@ -55,22 +56,6 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
   const [translationReset, setTransaltionReset] = useState<boolean>(false);
   const [textTopic, setTextTopic] = useState<string>("");
   const [dictionaryList, setDictionaryList] = useState<DictionaryElement[]>([]);
-
-  function handleChangeModel(model: ModelType) {
-    setGPTModel(model);
-  }
-
-  function handleChangeLevel(level: LevelType) {
-    setLanguageLevel(level);
-  }
-
-  function handleTranslationReset(value: boolean) {
-    setTransaltionReset(value);
-  }
-
-  function handleTextTopic(text: string) {
-    setTextTopic(text);
-  }
 
   function dictionaryAddElement(element: DictionaryElement) {
     if (dictionaryList.some((item) => item.word === element.word)) {
@@ -124,11 +109,12 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     textTopic: textTopic,
     dictionaryList: dictionaryList,
 
-    handleChangeModel: handleChangeModel,
-    handleChangeLevel: handleChangeLevel,
+    setIsFirstText: setIsFirstText,
+    setGPTModel: setGPTModel,
+    setLanguageLevel: setLanguageLevel,
     generateHandle: generateHandle,
-    handleTranslationReset: handleTranslationReset,
-    handleTextTopic: handleTextTopic,
+    setTransaltionReset: setTransaltionReset,
+    setTextTopic: setTextTopic,
     dictionaryAddElement: dictionaryAddElement,
   };
   return <AppContext.Provider value={ctxValue}>{children}</AppContext.Provider>;

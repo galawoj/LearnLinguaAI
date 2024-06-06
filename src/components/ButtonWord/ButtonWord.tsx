@@ -13,7 +13,7 @@ export default function ButtonWord({ word, id }: propsType) {
   const {
     GPTModel,
     translationReset,
-    handleTranslationReset,
+    setTransaltionReset,
     dictionaryAddElement,
   } = useAppContext();
 
@@ -54,7 +54,7 @@ export default function ButtonWord({ word, id }: propsType) {
       setButtonText(textTranslated);
     }
 
-    handleTranslationReset(false);
+    setTransaltionReset(false);
   }
 
   return (

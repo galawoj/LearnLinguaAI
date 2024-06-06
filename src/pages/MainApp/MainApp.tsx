@@ -9,6 +9,7 @@ import styles from "./mainApp.module.scss";
 import LanguageLevel from "../../components/LanguageLevel/LanguageLevel";
 // import TextTitle from "../../components/TextTitle/TextTitle";
 import Dictionary from "../../components/Dictionary/Dictionary";
+import TopicTextArea from "../../components/TopicTextArea/TopicTextArea";
 
 export default function MainApp() {
   return (
@@ -50,6 +51,7 @@ export default function MainApp() {
             <div>
               <label>Poziom języka</label>
               <LanguageLevel />
+              <TopicTextArea />
             </div>
           </div>
           <div className={styles.contentBx} data-for="security">
