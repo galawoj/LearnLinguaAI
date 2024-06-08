@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboard, faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import styles from "./mainApp.module.scss";
+import gpt_icon from "../../assets/chatgpt-6.svg";
 
 import LanguageLevel from "../../components/LanguageLevel/LanguageLevel";
 // import TextTitle from "../../components/TextTitle/TextTitle";
@@ -30,7 +31,7 @@ export default function MainApp() {
             <FontAwesomeIcon icon={faGear} />
           </label>
           <label htmlFor="security">
-            <FontAwesomeIcon icon={faGear} />
+            <img src={gpt_icon} alt="" className={styles.gpt_icon} />
           </label>
           <div className={styles.indicator}></div>
         </div>
@@ -42,12 +43,12 @@ export default function MainApp() {
             <ButtonGenerator />
           </div>
           <div className={styles.contentBx} data-for="about">
-            <h2>Dictionary</h2>
+            <h2>Słownik</h2>
 
             <Dictionary />
           </div>
           <div className={styles.contentBx} data-for="setting">
-            <h2>Setting</h2>
+            <h2>Preferencje</h2>
             <div>
               <label>Poziom języka</label>
               <LanguageLevel />
@@ -55,7 +56,7 @@ export default function MainApp() {
             </div>
           </div>
           <div className={styles.contentBx} data-for="security">
-            <h2>Security</h2>
+            <h2>Model AI</h2>
             <SelectModel />
           </div>
         </div>

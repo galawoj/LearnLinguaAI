@@ -18,12 +18,18 @@
     flex-wrap:wrap;
     width:600px;
     height:400px;
+
 }
+
+  
 .tabs{
     position:relative;
     width:80px;
     padding:40px 0;
 }
+
+
+
 
 .tabs input {
     appearance: none;
@@ -49,6 +55,13 @@
     transition:0.5s;
     cursor:pointer;
     z-index:2;
+    vertical-align: middle;
+}
+
+.gpt_icon{
+    position: relative;
+    top: 50%;
+    transform: translateY(-75%);
 }
 
 .tabs input:nth-child(1):checked ~ .icon label:nth-child(1),

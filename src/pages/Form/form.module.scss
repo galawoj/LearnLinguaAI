@@ -114,3 +114,32 @@ textarea{
       border-radius:5px;
       cursor:pointer;
     }
+
+    @media (width<=500px) {
+  
+      form{
+        width:100vw;
+        height:100vh;
+
+      }
+      .background{
+        width:100vw;
+
+      }
+      .shape{
+        height:100px;
+        width:100px
+      }
+
+      .shape:first-child{
+
+        left:100px;
+        top:80px;
+      }
+      
+      .shape:last-child{
+
+        right: 100px;
+        bottom:80px;
+      }
+    }

@@ -22,6 +22,7 @@ export default function LanguageLevel() {
         value={languageLevel}
         onChange={handleChange}
         sx={{
+          outline: "none",
           color: "inherit",
           font: "inherit",
           fontSize: "14px",
