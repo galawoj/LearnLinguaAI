@@ -93,6 +93,7 @@
     background:transparent;
     border-bottom-right-radius:20px;
     box-shadow: 8px 8px 0 8px var(--clr);
+    
 }
 
 .indicator::after{
@@ -159,3 +160,106 @@ color:#fff;
 .content .contentBx h2{
     margin-bottom: 5px; 
 }
+
+@media (width<=500px) {
+  
+    .container{
+       position: relative;
+
+        height: 100vh;
+        width:100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
+
+
+    .content{
+        border-radius: 0px; 
+        background:linear-gradient(180deg,var(--clr),#df0d54);
+        position: relative;
+        left:auto;
+        width:100vw;
+        height:100%;
+ 
+     }
+    .tabs{
+        position:relative;
+        height: 100vh;
+        width:100vw;
+        padding:0;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
+
+
+
+    .tabs .icon{
+        width:100vw;
+        position:relative;
+        display:flex;
+        flex-direction:row;
+        justify-content: space-between;
+       
+    }
+
+
+    .indicator{
+
+        border-top-left-radius:30px;
+        border-top-right-radius:30px;
+        border-bottom-right-radius:0px;
+        border-bottom-left-radius:0px;
+
+    }
+    
+
+
+
+    .tabs input:nth-child(1):checked ~ .icon .indicator{
+        left:0;
+        top:0;
+    }
+    .tabs input:nth-child(2):checked ~ .icon .indicator{
+        left:calc((100% - 80px) / 3);
+        top:0;
+    }
+    .tabs input:nth-child(3):checked ~ .icon .indicator{
+        left:calc((100% - 80px) * 2 / 3);
+        top:0;
+    }
+    .tabs input:nth-child(4):checked ~ .icon .indicator{
+        left:calc(100% - 80px);
+        top:0;
+    }
+
+    .indicator::before{
+
+
+        top:60px;
+        right:80px;
+        width:20px;
+        height:20px;
+        background:transparent;
+        border-bottom-right-radius:20px;
+        
+        box-shadow: 8px 8px 0 8px var(--clr);
+        
+    }
+    
+    .indicator::after{
+
+        bottom:0px;
+        right:-20px;
+        width:20px;
+        height:20px;
+        background:transparent;
+        border-top-right-radius:0px;
+        border-bottom-left-radius:20px;
+
+
+        box-shadow: -8px 8px 0 8px var(--clr);
+    }
+  }
