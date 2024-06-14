@@ -1,11 +1,10 @@
 import ButtonGenerator from "../../components/ButtonGenerator/ButtonGenerator";
-import SelectModel from "../../components/SelectModel/SelectModel";
+
 import { TextGenerator } from "../../components/TextGenerator/TextGenerator";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboard, faBookOpen } from "@fortawesome/free-solid-svg-icons";
-import { faGear } from "@fortawesome/free-solid-svg-icons";
+import { faGear, faUser } from "@fortawesome/free-solid-svg-icons";
 import styles from "./mainApp.module.scss";
-import gpt_icon from "../../assets/chatgpt-6.svg";
 
 import LanguageLevel from "../../components/LanguageLevel/LanguageLevel";
 // import TextTitle from "../../components/TextTitle/TextTitle";
@@ -17,21 +16,21 @@ export default function MainApp() {
     <div className={styles.container}>
       <div className={styles.tabs}>
         <input type="radio" name="group" id="home" defaultChecked />
-        <input type="radio" name="group" id="about" />
+        <input type="radio" name="group" id="dictionary" />
         <input type="radio" name="group" id="setting" />
-        <input type="radio" name="group" id="security" />
+        <input type="radio" name="group" id="profil" />
         <div className={styles.icon}>
           <label htmlFor="home">
             <FontAwesomeIcon icon={faBookOpen} />
           </label>
-          <label htmlFor="about">
+          <label htmlFor="dictionary">
             <FontAwesomeIcon icon={faClipboard} />
           </label>
           <label htmlFor="setting">
             <FontAwesomeIcon icon={faGear} />
           </label>
-          <label htmlFor="security">
-            <img src={gpt_icon} alt="" className={styles.gpt_icon} />
+          <label htmlFor="profil">
+            <FontAwesomeIcon icon={faUser} />
           </label>
           <div className={styles.indicator}></div>
         </div>
@@ -42,7 +41,7 @@ export default function MainApp() {
             <TextGenerator />
             <ButtonGenerator />
           </div>
-          <div className={styles.contentBx} data-for="about">
+          <div className={styles.contentBx} data-for="dictionary">
             <h2>Słownik</h2>
 
             <Dictionary />
@@ -55,9 +54,8 @@ export default function MainApp() {
               <TopicTextArea />
             </div>
           </div>
-          <div className={styles.contentBx} data-for="security">
-            <h2>Model AI</h2>
-            <SelectModel />
+          <div className={styles.contentBx} data-for="profil">
+            <h2>Profil</h2>
           </div>
         </div>
       </div>

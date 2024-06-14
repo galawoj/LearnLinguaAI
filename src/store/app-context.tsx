@@ -25,6 +25,8 @@ type AppContexType = {
   setTransaltionReset: (value: boolean) => void;
   setTextTopic: (text: string) => void;
   dictionaryAddElement: (element: DictionaryElement) => void;
+  setMessagesToRequest: (message: MessageToRequestType[]) => void;
+  setMessages: (message: MessageType[]) => void;
 };
 
 const AppContext = createContext<AppContexType | null>(null);
@@ -116,6 +118,8 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     setTransaltionReset: setTransaltionReset,
     setTextTopic: setTextTopic,
     dictionaryAddElement: dictionaryAddElement,
+    setMessagesToRequest: setMessagesToRequest,
+    setMessages: setMessages,
   };
   return <AppContext.Provider value={ctxValue}>{children}</AppContext.Provider>;
 }

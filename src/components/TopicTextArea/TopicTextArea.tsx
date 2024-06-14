@@ -3,12 +3,20 @@ import styles from "./topicTextArea.module.scss";
 import { useAppContext } from "../../store/app-context";
 
 export default function TopicTextArea() {
-  const { setTextTopic, textTopic, setIsFirstText } = useAppContext();
+  const {
+    textTopic,
+    setTextTopic,
+    setIsFirstText,
+    setMessagesToRequest,
+    setMessages,
+  } = useAppContext();
   const textArea = useRef<HTMLTextAreaElement>(null);
 
   function textAreaChanger() {
     setTextTopic(textArea.current?.value as string);
     setIsFirstText(true);
+    setMessagesToRequest([]);
+    setMessages([]);
   }
 
   return (

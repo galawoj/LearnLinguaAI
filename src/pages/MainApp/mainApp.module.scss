@@ -1,11 +1,3 @@
-// body{
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     min-height:100vh;
-
-// }
-
 
 :root{
     --clr:#a12db5;
@@ -160,12 +152,17 @@ color:#fff;
 .content .contentBx h2{
     margin-bottom: 5px; 
 }
+.content .contentBx:nth-child(2){
+    h2{
+        text-align: center;
+    } 
+
+}
 
 @media (width<=500px) {
   
     .container{
        position: relative;
-
         height: 100vh;
         width:100vw;
         display: flex;
@@ -174,6 +171,7 @@ color:#fff;
 
     }
 
+ 
 
     .content{
         border-radius: 0px; 

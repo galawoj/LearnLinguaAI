@@ -14,7 +14,10 @@ export default function DictionaryButton({ word, translatedWord }: propsType) {
   }
   return (
     <>
-      <button onClick={buttonHandler} className={styles.button}>
+      <button
+        onClick={buttonHandler}
+        className={`${styles.button} ${isClicked && styles.buttonClicked} `}
+      >
         {!isClicked ? word : translatedWord}
       </button>
     </>
