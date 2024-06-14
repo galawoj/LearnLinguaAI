@@ -74,7 +74,11 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     const newMessage: MessageToRequestType = {
       message: isFirstText
         ? `generate a 50-word English text at ${languageLevel} level on the topic ${textTopic}`
-        : `Continue the previous text by generating another 50 words at ${languageLevel} level`,
+        : `Continue the previous text by generating another 50 words at ${languageLevel} level, use words: ${dictionaryList.map(
+            (e) => {
+              return e.word;
+            }
+          )} `,
       sender: "user",
       direction: "outgoing",
       position: "normal",
