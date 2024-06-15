@@ -19,13 +19,15 @@ app.post('/api', async (req: Request, res: Response) => {
       const response = await axios.post('https://api.openai.com/v1/chat/completions', req, {
         headers: {
           Authorization: `Bearer ${API_KEY}`,
+
           'Content-Type': 'application/json',
         },
       });
       res.json(response.data);
     } catch (error) {
+      
       console.error('Error fetching data from OpenAI API:', error);
-      res.status(500).send('Error fetching data from OpenAI API');
+      res.status(500).send('Error fetching data from OpenAI API:'+error);
     }
   });
 

@@ -3,7 +3,7 @@ import { ApiRequestBodyType } from "../types/ApiRequestBodyType";
 
 
 export async function fetchGptResponse(apiRequestBody:ApiRequestBodyType){
-    return fetch("/api", {
+    return fetch("https://wgservice-apim.azure-api.net/backend/api", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
