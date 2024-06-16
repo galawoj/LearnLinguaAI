@@ -161,6 +161,17 @@ color:#fff;
 
 @media (width<=500px) {
   
+.content::before{
+        
+content: " ";
+position:absolute;
+width: 100%;
+height: 20px;
+top:0px;
+background-color: var(--clr);
+z-index: 10;
+} 
+
     .container{
        position: relative;
         height: 100vh;
@@ -168,7 +179,6 @@ color:#fff;
         display: flex;
         flex-direction: column;
         justify-content: center;
-
     }
 
  
@@ -178,9 +188,8 @@ color:#fff;
         background:linear-gradient(180deg,var(--clr),#df0d54);
         position: relative;
         left:auto;
-        width:100vw;
+        width:100%;
         height:100%;
- 
      }
     .tabs{
         position:relative;

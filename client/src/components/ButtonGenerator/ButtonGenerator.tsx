@@ -9,7 +9,10 @@ export default function ButtonGenerator() {
       {typing ? (
         <span className={styles.loader}></span>
       ) : (
-        <button onClick={generateHandle}>
+        <button
+          style={{ outline: "none", border: "none" }}
+          onClick={generateHandle}
+        >
           {isFirstText ? "start" : "continue"}
         </button>
       )}
