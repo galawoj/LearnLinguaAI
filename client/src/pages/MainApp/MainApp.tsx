@@ -36,7 +36,7 @@ export default function MainApp() {
         </div>
         <div className={styles.content}>
           <div className={styles.contentBx} data-for="home">
-            <h2>{/* <TextTitle /> */}title</h2>
+            {/* <h2><TextTitle /></h2> */}
 
             <TextGenerator />
             <ButtonGenerator />
