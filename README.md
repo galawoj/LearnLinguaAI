@@ -29,24 +29,24 @@ Welcome to the LearnLingua AI!<br> This application is a modern language learnin
 
 <ul>
 <li>
-Tailored Texts: Choose your proficiency level and a topic, and the app generates texts specifically designed to suit your learning needs.
+<b>Tailored Texts:</b> Choose your proficiency level and a topic, and the app generates texts specifically designed to suit your learning needs.
 </li>
 <li>
-Adaptive Content: The app uses AI to adapt the difficulty and style of the texts based on your progress and preferences.
+<b>Adaptive Content:</b> The app uses AI to adapt the difficulty and style of the texts based on your progress and preferences.
 </li>
 </ul>
 
 #### Vocabulary Building:
 
 <ul>
-<li>Instant Translations: Click on unfamiliar words to see their translations into Polish, helping you understand the context without interrupting your reading flow.</li>
-<li>Personal Dictionary: Add translated words to your personal dictionary for easy review and practice, ensuring that you retain new vocabulary effectively.</li>
+<li><b>Instant Translations:</b> Click on unfamiliar words to see their translations into Polish, helping you understand the context without interrupting your reading flow.</li>
+<li><b>Personal Dictionary:</b> Add translated words to your personal dictionary for easy review and practice, ensuring that you retain new vocabulary effectively.</li>
 </ul>
 
 #### Continuous Learning:
 
 <ul>
-<li>Contextual Learning: The app continues the previous text by incorporating words you found unfamiliar, reinforcing your understanding and retention of new vocabulary.</li>
+<li><b>Contextual Learning:</b> The app continues the previous text by incorporating words you found unfamiliar, reinforcing your understanding and retention of new vocabulary.</li>
 
 </ul>
 
