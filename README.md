@@ -63,10 +63,17 @@ To run this project, enter the webside <b>https://galawoj.github.io/languageGpt_
 git clone https://github.com/galawoj/LearnLinguaAI
 ```
 
-### Starting
+### Starting Backand
 
 ```
-$ cd ../languageGpt
+$ cd ../LearnLinguaAI/server
+$ npm install
+$ npm run dev
+```
+### Starting Frontend
+
+```
+$ cd ../LearnLinguaAI/client
 $ npm install
 $ npm run dev
 ```
