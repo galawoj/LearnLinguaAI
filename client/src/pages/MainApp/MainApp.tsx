@@ -10,6 +10,7 @@ import LanguageLevel from "../../components/LanguageLevel/LanguageLevel";
 // import TextTitle from "../../components/TextTitle/TextTitle";
 import Dictionary from "../../components/Dictionary/Dictionary";
 import TopicTextArea from "../../components/TopicTextArea/TopicTextArea";
+import TokensCounter from "../../components/TokensCounter/TokensCounter";
 
 export default function MainApp() {
   return (
@@ -56,6 +57,7 @@ export default function MainApp() {
           </div>
           <div className={styles.contentBx} data-for="profil">
             <h2>Profil</h2>
+            <TokensCounter />
           </div>
         </div>
       </div>

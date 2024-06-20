@@ -13,6 +13,12 @@ type propsType = {
   setMessagesToRequest: Dispatch<SetStateAction<MessageToRequestType[]>>;
   setMessages: Dispatch<SetStateAction<MessageType[]>>;
   setTyping: (typing: boolean) => void;
+  setNumberOfTocens: Dispatch<
+    SetStateAction<{
+      input: number;
+      output: number;
+    }>
+  >;
 };
 
 export async function processMessageToChatGPT({
@@ -21,6 +27,7 @@ export async function processMessageToChatGPT({
   setMessagesToRequest,
   setMessages,
   setTyping,
+  setNumberOfTocens,
 }: propsType) {
   let apiMessages: ApiMessageType[] = chatMessages.map((messageObject) => {
     let role: "assistant" | "user" | "" = "";
@@ -44,6 +51,13 @@ export async function processMessageToChatGPT({
   };
 
   fetchGptResponse(apiRequestBody).then((data) => {
+    setNumberOfTocens(({ input, output }) => {
+      return {
+        input: input + data.usage.prompt_tokens,
+        output: output + data.usage.completion_tokens,
+      };
+    });
+
     const contentGPT: string = data.choices[0].message.content;
     const messageAsButtons = contentGPT.split(" ").map((word, i) => {
       return <ButtonWord key={word + i} word={word} id={word + i} />;

@@ -17,6 +17,10 @@ type AppContexType = {
   translationReset: boolean;
   textTopic: string;
   dictionaryList: DictionaryElement[];
+  numberOfTocens: {
+    input: number;
+    output: number;
+  };
 
   setIsFirstText: (value: boolean) => void;
   setGPTModel: (model: ModelType) => void;
@@ -27,6 +31,9 @@ type AppContexType = {
   dictionaryAddElement: (element: DictionaryElement) => void;
   setMessagesToRequest: (message: MessageToRequestType[]) => void;
   setMessages: (message: MessageType[]) => void;
+  setNumberOfTocens: React.Dispatch<
+    React.SetStateAction<{ input: number; output: number }>
+  >;
 };
 
 const AppContext = createContext<AppContexType | null>(null);
@@ -58,6 +65,10 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
   const [translationReset, setTransaltionReset] = useState<boolean>(false);
   const [textTopic, setTextTopic] = useState<string>("");
   const [dictionaryList, setDictionaryList] = useState<DictionaryElement[]>([]);
+  const [numberOfTocens, setNumberOfTocens] = useState<{
+    input: number;
+    output: number;
+  }>({ input: 0, output: 0 });
 
   function dictionaryAddElement(element: DictionaryElement) {
     if (dictionaryList.some((item) => item.word === element.word)) {
@@ -98,6 +109,7 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
       setMessagesToRequest,
       setMessages,
       setTyping,
+      setNumberOfTocens,
     });
 
     setIsFirstText(false);
@@ -114,6 +126,7 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     translationReset: translationReset,
     textTopic: textTopic,
     dictionaryList: dictionaryList,
+    numberOfTocens: numberOfTocens,
 
     setIsFirstText: setIsFirstText,
     setGPTModel: setGPTModel,
@@ -124,6 +137,7 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     dictionaryAddElement: dictionaryAddElement,
     setMessagesToRequest: setMessagesToRequest,
     setMessages: setMessages,
+    setNumberOfTocens: setNumberOfTocens,
   };
   return <AppContext.Provider value={ctxValue}>{children}</AppContext.Provider>;
 }
