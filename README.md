@@ -20,7 +20,6 @@ Welcome to the LearnLingua AI!<br> This application is a modern language learnin
 <li>Axios 1.7.2</li>
 <li>Material UI 16.4.5</li>
 <li>Sass 1.77.2</li>
-<li>Firebase 10.4.0</li>
 </ul>
 
 ## Features
@@ -61,7 +60,7 @@ Welcome to the LearnLingua AI!<br> This application is a modern language learnin
 To run this project, enter the webside <b>https://galawoj.github.io/languageGpt_build/</b> or clone my repository:
 
 ```
-git clone https://github.com/galawoj/languageGpt
+git clone https://github.com/galawoj/LearnLinguaAI
 ```
 
 ### Starting
