@@ -16,6 +16,6 @@ export default defineConfig({
     },
   },
  
- base:'/languageGpt_build/',
+ base:'/LearnLinguaAI_build/',
 
 });

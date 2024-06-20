@@ -30,9 +30,7 @@ Welcome to the LearnLingua AI!<br> This application is a modern language learnin
 <li>
 <b>Tailored Texts:</b> Choose your proficiency level and a topic, and the app generates texts specifically designed to suit your learning needs.
 </li>
-<li>
-<b>Adaptive Content:</b> The app uses AI to adapt the difficulty and style of the texts based on your progress and preferences.
-</li>
+
 </ul>
 
 #### Vocabulary Building:
@@ -57,10 +55,10 @@ Welcome to the LearnLingua AI!<br> This application is a modern language learnin
 
 ## Setup
 
-To run this project, enter the webside <b>https://galawoj.github.io/languageGpt_build/</b> or clone my repository:
+To run this project, enter the webside <b>https://galawoj.github.io/LearnLinguaAI_build/</b> or clone my repository:
 
 ```
-git clone https://github.com/galawoj/LearnLinguaAI
+git clone https://github.com/galawoj/LearnLinguaAI.git
 ```
 
 ### Starting Backand
@@ -70,6 +68,7 @@ $ cd ../LearnLinguaAI/server
 $ npm install
 $ npm run dev
 ```
+
 ### Starting Frontend
 
 ```
