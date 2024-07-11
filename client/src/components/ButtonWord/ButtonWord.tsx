@@ -30,7 +30,11 @@ export default function ButtonWord({ word, id }: propsType) {
     model: GPTModel,
     messages: [
       {
-        content: `przetłumacz na język polski słowo '${word}'.Przetłumacz jedno znaczenie, nie rozwijaj tłumaczenia`,
+        content: "your response is only ONE world in polish language",
+        role: "system",
+      },
+      {
+        content: `przetłumacz na język polski słowo '${word}'`,
         role: "user",
       },
     ],

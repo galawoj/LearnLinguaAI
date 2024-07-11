@@ -6,6 +6,7 @@ import { type ModelType } from "../types/ModelType";
 import { type ApiRequestBodyType } from "../types/ApiRequestBodyType";
 import ButtonWord from "../components/ButtonWord/ButtonWord";
 import { fetchGptResponse } from "../api/fetchGptResponse";
+import { LevelType } from "../types/LevelType";
 
 type propsType = {
   GPTModel: ModelType;
@@ -13,6 +14,7 @@ type propsType = {
   setMessagesToRequest: Dispatch<SetStateAction<MessageToRequestType[]>>;
   setMessages: Dispatch<SetStateAction<MessageType[]>>;
   setTyping: (typing: boolean) => void;
+  languageLevel: LevelType;
 };
 
 export async function processMessageToChatGPT({
@@ -21,6 +23,7 @@ export async function processMessageToChatGPT({
   setMessagesToRequest,
   setMessages,
   setTyping,
+  languageLevel,
 }: propsType) {
   let apiMessages: ApiMessageType[] = chatMessages.map((messageObject) => {
     let role: "assistant" | "user" | "" = "";
@@ -32,15 +35,15 @@ export async function processMessageToChatGPT({
     return { role: role, content: messageObject.message };
   });
 
-  // const systemMessage: ApiMessageType = {
-  //   role: "system",
-  //   content: "odpowiadaj zawsze po polsku",
-  // };
+  const systemMessage: ApiMessageType = {
+    role: "system",
+    content: `generate text only in English at ${languageLevel} level`,
+  };
 
   const apiRequestBody: ApiRequestBodyType = {
     model: GPTModel,
-    messages: [...apiMessages],
-    //messages: [systemMessage,...apiMessages]
+    // messages: [...apiMessages],
+    messages: [systemMessage, ...apiMessages],
   };
 
   fetchGptResponse(apiRequestBody).then((data) => {
