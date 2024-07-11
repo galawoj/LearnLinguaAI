@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { type ApiMessageType } from "../types/ApiMessageType";
-import { type MessageType } from "../types/MessageType";
+import { type MessageToDisplayType } from "../types/MessageToDisplayType";
 import { type MessageToRequestType } from "../types/MessageToRequestType";
 import { type ModelType } from "../types/ModelType";
 import { type ApiRequestBodyType } from "../types/ApiRequestBodyType";
@@ -8,11 +8,11 @@ import ButtonWord from "../components/ButtonWord/ButtonWord";
 import { fetchGptResponse } from "../api/fetchGptResponse";
 import { LevelType } from "../types/LevelType";
 
-type propsType = {
+type argsType = {
   GPTModel: ModelType;
   chatMessages: MessageToRequestType[];
   setMessagesToRequest: Dispatch<SetStateAction<MessageToRequestType[]>>;
-  setMessages: Dispatch<SetStateAction<MessageType[]>>;
+  setMessagesToDisplay: Dispatch<SetStateAction<MessageToDisplayType[]>>;
   setTyping: (typing: boolean) => void;
   languageLevel: LevelType;
 };
@@ -21,10 +21,10 @@ export async function processMessageToChatGPT({
   GPTModel,
   chatMessages,
   setMessagesToRequest,
-  setMessages,
+  setMessagesToDisplay,
   setTyping,
   languageLevel,
-}: propsType) {
+}: argsType) {
   let apiMessages: ApiMessageType[] = chatMessages.map((messageObject) => {
     let role: "assistant" | "user" | "" = "";
     if (messageObject.sender === "ChatGPT") {
@@ -52,8 +52,8 @@ export async function processMessageToChatGPT({
       return <ButtonWord key={word + i} word={word} id={word + i} />;
     });
 
-    setMessages((messages) => {
-      const gptMessage: MessageType = {
+    setMessagesToDisplay((messages) => {
+      const gptMessage: MessageToDisplayType = {
         id: data.id,
         message: messageAsButtons,
         sender: "ChatGPT",

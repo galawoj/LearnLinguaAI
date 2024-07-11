@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 
-import { type MessageType } from "../types/MessageType";
+import { type MessageToDisplayType } from "../types/MessageToDisplayType";
 import { type ModelType } from "../types/ModelType";
 import { type MessageToRequestType } from "../types/MessageToRequestType";
 import { type DictionaryElement } from "../types/DisctionaryElementType";
@@ -9,7 +9,7 @@ import { LevelType } from "../types/LevelType";
 
 type AppContexType = {
   typing: boolean;
-  messages: MessageType[];
+  messagesToDisplay: MessageToDisplayType[];
   messagesToRequest: MessageToRequestType[];
   isFirstText: boolean;
   GPTModel: ModelType;
@@ -26,7 +26,7 @@ type AppContexType = {
   setTextTopic: (text: string) => void;
   dictionaryAddElement: (element: DictionaryElement) => void;
   setMessagesToRequest: (message: MessageToRequestType[]) => void;
-  setMessages: (message: MessageType[]) => void;
+  setMessagesToDisplay: (message: MessageToDisplayType[]) => void;
 };
 
 const AppContext = createContext<AppContexType | null>(null);
@@ -53,7 +53,9 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
   const [messagesToRequest, setMessagesToRequest] = useState<
     MessageToRequestType[]
   >([]);
-  const [messages, setMessages] = useState<MessageType[]>([]);
+  const [messagesToDisplay, setMessagesToDisplay] = useState<
+    MessageToDisplayType[]
+  >([]);
   const [isFirstText, setIsFirstText] = useState<boolean>(true);
   const [translationReset, setTransaltionReset] = useState<boolean>(false);
   const [textTopic, setTextTopic] = useState<string>("");
@@ -98,7 +100,7 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
       GPTModel,
       chatMessages: newMessagesToRequest,
       setMessagesToRequest,
-      setMessages,
+      setMessagesToDisplay,
       setTyping,
       languageLevel,
     });
@@ -109,7 +111,7 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
 
   const ctxValue: AppContexType = {
     typing: typing,
-    messages: messages,
+    messagesToDisplay: messagesToDisplay,
     messagesToRequest: messagesToRequest,
     isFirstText: isFirstText,
     GPTModel: GPTModel,
@@ -126,7 +128,7 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     setTextTopic: setTextTopic,
     dictionaryAddElement: dictionaryAddElement,
     setMessagesToRequest: setMessagesToRequest,
-    setMessages: setMessages,
+    setMessagesToDisplay: setMessagesToDisplay,
   };
   return <AppContext.Provider value={ctxValue}>{children}</AppContext.Provider>;
 }
