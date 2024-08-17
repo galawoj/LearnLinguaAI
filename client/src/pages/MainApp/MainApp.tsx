@@ -11,7 +11,6 @@ import LanguageLevel from "../../components/LanguageLevel/LanguageLevel";
 import Dictionary from "../../components/Dictionary/Dictionary";
 import TopicTextArea from "../../components/TopicTextArea/TopicTextArea";
 import TokensCounter from "../../components/TokensCounter/TokensCounter";
-import SelectModel from "../../components/SelectModel/SelectModel";
 
 export default function MainApp() {
   return (
