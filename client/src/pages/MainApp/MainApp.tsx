@@ -54,7 +54,6 @@ export default function MainApp() {
               <label>Poziom języka</label>
               <LanguageLevel />
               <TopicTextArea />
-              <SelectModel />
             </div>
           </div>
           <div className={styles.contentBx} data-for="profil">

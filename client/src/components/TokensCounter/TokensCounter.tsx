@@ -46,10 +46,8 @@ export default function TokensCounter() {
 
   return (
     <>
-      Wykorzystałeś <b>{sumOfTokens.input + sumOfTokens.output}</b> tokentów
-      <br />
-      input: <b>{sumOfTokens.input}</b> = {costOfTokens.input / 1000000}$ <br />
-      output: <b>{sumOfTokens.output}</b> = {costOfTokens.output / 1000000}$
+      Wykorzystałeś <b>{sumOfTokens.input + sumOfTokens.output}</b> tokentów ={" "}
+      <b>{(costOfTokens.input + costOfTokens.output) / 1000000}$</b>
     </>
   );
 }
