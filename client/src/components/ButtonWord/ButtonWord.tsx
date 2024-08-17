@@ -15,6 +15,7 @@ export default function ButtonWord({ word, id }: propsType) {
     translationReset,
     setTransaltionReset,
     dictionaryAddElement,
+    setNumberOfTokens,
   } = useAppContext();
 
   const [buttonText, setButtonText] = useState<string>(word);
@@ -43,6 +44,13 @@ export default function ButtonWord({ word, id }: propsType) {
   function buttonHandler() {
     if (!textTranslated) {
       fetchGptResponse(apiRequestBody).then((data) => {
+        setNumberOfTokens(() => {
+          return {
+            input: data.usage.prompt_tokens,
+            output: data.usage.completion_tokens,
+          };
+        });
+
         const contentGPT: string = data.choices[0].message.content;
         setTextTranslated(contentGPT);
         setButtonText(contentGPT);

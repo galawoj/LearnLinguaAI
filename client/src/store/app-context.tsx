@@ -4,6 +4,7 @@ import { type MessageToDisplayType } from "../types/MessageToDisplayType";
 import { type ModelType } from "../types/ModelType";
 import { type MessageToRequestType } from "../types/MessageToRequestType";
 import { type DictionaryElement } from "../types/DisctionaryElementType";
+import { type NumberOfTokensType } from "../types/NumberOfTokensType";
 import { processMessageToChatGPT } from "../utils/ProcessMessageToChatGPT";
 import { LevelType } from "../types/LevelType";
 
@@ -17,6 +18,7 @@ type AppContexType = {
   translationReset: boolean;
   textTopic: string;
   dictionaryList: DictionaryElement[];
+  numberOfTokens: NumberOfTokensType;
 
   setIsFirstText: (value: boolean) => void;
   setGPTModel: (model: ModelType) => void;
@@ -25,8 +27,10 @@ type AppContexType = {
   setTransaltionReset: (value: boolean) => void;
   setTextTopic: (text: string) => void;
   dictionaryAddElement: (element: DictionaryElement) => void;
+
   setMessagesToRequest: (message: MessageToRequestType[]) => void;
   setMessagesToDisplay: (message: MessageToDisplayType[]) => void;
+  setNumberOfTokens: React.Dispatch<React.SetStateAction<NumberOfTokensType>>;
 };
 
 const AppContext = createContext<AppContexType | null>(null);
@@ -60,6 +64,10 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
   const [translationReset, setTransaltionReset] = useState<boolean>(false);
   const [textTopic, setTextTopic] = useState<string>("");
   const [dictionaryList, setDictionaryList] = useState<DictionaryElement[]>([]);
+  const [numberOfTokens, setNumberOfTokens] = useState<NumberOfTokensType>({
+    input: 0,
+    output: 0,
+  });
 
   function dictionaryAddElement(element: DictionaryElement) {
     if (dictionaryList.some((item) => item.word === element.word)) {
@@ -103,6 +111,7 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
       setMessagesToDisplay,
       setTyping,
       languageLevel,
+      setNumberOfTokens,
     });
 
     setIsFirstText(false);
@@ -119,6 +128,7 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     translationReset: translationReset,
     textTopic: textTopic,
     dictionaryList: dictionaryList,
+    numberOfTokens: numberOfTokens,
 
     setIsFirstText: setIsFirstText,
     setGPTModel: setGPTModel,
@@ -129,6 +139,7 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     dictionaryAddElement: dictionaryAddElement,
     setMessagesToRequest: setMessagesToRequest,
     setMessagesToDisplay: setMessagesToDisplay,
+    setNumberOfTokens: setNumberOfTokens,
   };
   return <AppContext.Provider value={ctxValue}>{children}</AppContext.Provider>;
 }
