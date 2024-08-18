@@ -20,12 +20,32 @@ export default function ButtonWord({ word, id }: propsType) {
 
   const [buttonText, setButtonText] = useState<string>(word);
   const [textTranslated, setTextTranslated] = useState<string>("");
+  const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
 
   useEffect(() => {
     if (translationReset) {
       setButtonText(word);
     }
   }, [translationReset]);
+
+  useEffect(() => {
+    if (isFirstRender) {
+      setIsFirstRender(false);
+      return;
+    } else {
+      const reg = /[.,]/g;
+      const onlyWordToLowerCase = word.replace(reg, "").toLowerCase();
+      const onlyContentGPTToLowerCase = textTranslated
+        .replace(reg, "")
+        .toLowerCase();
+
+      dictionaryAddElement({
+        word: onlyWordToLowerCase,
+        translatedWord: onlyContentGPTToLowerCase,
+        id: id,
+      });
+    }
+  }, [textTranslated]);
 
   const apiRequestBody: ApiRequestBodyType = {
     model: GPTModel,
@@ -54,11 +74,6 @@ export default function ButtonWord({ word, id }: propsType) {
         const contentGPT: string = data.choices[0].message.content;
         setTextTranslated(contentGPT);
         setButtonText(contentGPT);
-        dictionaryAddElement({
-          word: word,
-          translatedWord: contentGPT,
-          id: id,
-        });
       });
     } else if (textTranslated === buttonText) {
       setButtonText(word);
