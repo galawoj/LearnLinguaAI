@@ -16,6 +16,6 @@ export default defineConfig({
     },
   },
  
- base:'/LearnLinguaAI_build/',
+ base:'https://lingua-ai.pl/',
 
 });
