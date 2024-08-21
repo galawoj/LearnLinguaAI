@@ -13,7 +13,7 @@ export default function Form({ onHandleChangePage }: FormProps) {
   const { setTextTopic } = useAppContext();
   const textArea = useRef<HTMLTextAreaElement>(null);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setTextTopic(textArea.current?.value as string);
     onHandleChangePage("mainApp");
@@ -35,6 +35,7 @@ export default function Form({ onHandleChangePage }: FormProps) {
         <label htmlFor="content">Temat</label>
         <div style={{ position: "relative" }}>
           <textarea
+            className={styles.textarea}
             ref={textArea}
             id="content"
             placeholder="o czym chciałbyś przeczytać tekst w obcym języku?"

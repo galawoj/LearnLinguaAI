@@ -10,7 +10,7 @@ type propsType = {
 };
 
 export default function ButtonRandomTopic({ onChangeTopicHandler }: propsType) {
-  const { GPTModel, languageLevel } = useAppContext();
+  const { GPTModel, languageLevel, setNumberOfTokens } = useAppContext();
 
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
@@ -20,7 +20,7 @@ export default function ButtonRandomTopic({ onChangeTopicHandler }: propsType) {
     content: `generate text only in Polish`,
   };
 
-  function randomTopicHandler() {
+  async function randomTopicHandler() {
     setIsTyping(true);
     const apiRequestBody: ApiRequestBodyType = {
       model: GPTModel,
@@ -32,30 +32,29 @@ export default function ButtonRandomTopic({ onChangeTopicHandler }: propsType) {
         },
       ],
     };
+    try {
+      const data = await fetchGptResponse(apiRequestBody);
+      const reg = /^"|"$/g;
 
-    fetchGptResponse(apiRequestBody)
-      .then((data) => {
-        const reg = /^"|"$/g;
-
-        const contentGPT: string = data.choices[0].message.content;
-        onChangeTopicHandler(contentGPT.replace(reg, ""));
-      })
-      .then(() => setIsTyping(false));
+      const contentGPT: string = data.choices?.[0]?.message?.content || "";
+      onChangeTopicHandler(contentGPT.replace(reg, ""));
+      setNumberOfTokens(() => {
+        return {
+          input: data.usage.prompt_tokens || 0,
+          output: data.usage.completion_tokens || 0,
+        };
+      });
+    } catch (error) {
+      console.log("Error fetching GPT response:", error);
+    } finally {
+      setIsTyping(false);
+    }
   }
 
   return (
     <button
+      className={styles.buttonRandomTopic}
       type="button"
-      style={{
-        position: "absolute",
-        bottom: "10px",
-        right: "10px",
-        maxWidth: "30%",
-        height: "30%",
-        fontSize: "8pt",
-        padding: 0,
-        opacity: 0.5,
-      }}
       onClick={randomTopicHandler}
     >
       {!isTyping ? "losuj temat" : <span className={styles.loader}></span>}

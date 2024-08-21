@@ -48,16 +48,16 @@ export async function processMessageToChatGPT({
     // messages: [...apiMessages],
     messages: [systemMessage, ...apiMessages],
   };
-
-  fetchGptResponse(apiRequestBody).then((data) => {
+  try {
+    const data = await fetchGptResponse(apiRequestBody);
     setNumberOfTokens(() => {
       return {
-        input: data.usage.prompt_tokens,
-        output: data.usage.completion_tokens,
+        input: data.usage.prompt_tokens || 0,
+        output: data.usage.completion_tokens || 0,
       };
     });
 
-    const contentGPT: string = data.choices[0].message.content;
+    const contentGPT: string = data.choices?.[0]?.message?.content || "";
     const messageAsButtons = contentGPT.split(" ").map((word, i) => {
       return <ButtonWord key={word + i} word={word} id={word + i} />;
     });
@@ -84,6 +84,9 @@ export async function processMessageToChatGPT({
       const newMessages = [...messages, gptMessage];
       return newMessages;
     });
+  } catch (error) {
+    console.log("Error fetching GPT response:", error);
+  } finally {
     setTyping(false);
-  });
+  }
 }

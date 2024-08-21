@@ -22,7 +22,7 @@ export default function Intro({ onHandleChangePage }: IntroProps) {
             }
           />
         </span>
-        <button onClick={() => onHandleChangePage("form")}>ok</button>
+        <button onClick={() => onHandleChangePage("form")}>TAK!</button>
       </div>
     </>
   );

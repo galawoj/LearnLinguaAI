@@ -61,20 +61,22 @@ export default function ButtonWord({ word, id }: propsType) {
     ],
   };
 
-  function buttonHandler() {
+  async function buttonHandler() {
     if (!textTranslated) {
-      fetchGptResponse(apiRequestBody).then((data) => {
+      try {
+        const data = await fetchGptResponse(apiRequestBody);
         setNumberOfTokens(() => {
           return {
-            input: data.usage.prompt_tokens,
-            output: data.usage.completion_tokens,
+            input: data.usage.prompt_tokens || 0,
+            output: data.usage.completion_tokens || 0,
           };
         });
-
-        const contentGPT: string = data.choices[0].message.content;
+        const contentGPT: string = data.choices?.[0]?.message?.content || "";
         setTextTranslated(contentGPT);
         setButtonText(contentGPT);
-      });
+      } catch (error) {
+        console.log("Error fetching GPT response:", error);
+      }
     } else if (textTranslated === buttonText) {
       setButtonText(word);
     } else {
