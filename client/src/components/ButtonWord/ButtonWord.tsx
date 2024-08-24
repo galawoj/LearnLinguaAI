@@ -63,20 +63,16 @@ export default function ButtonWord({ word, id }: propsType) {
 
   async function buttonHandler() {
     if (!textTranslated) {
-      try {
-        const data = await fetchGptResponse(apiRequestBody);
-        setNumberOfTokens(() => {
-          return {
-            input: data.usage.prompt_tokens || 0,
-            output: data.usage.completion_tokens || 0,
-          };
-        });
-        const contentGPT: string = data.choices?.[0]?.message?.content || "";
-        setTextTranslated(contentGPT);
-        setButtonText(contentGPT);
-      } catch (error) {
-        console.log("Error fetching GPT response:", error);
-      }
+      const data = await fetchGptResponse(apiRequestBody);
+      setNumberOfTokens(() => {
+        return {
+          input: data.usage.prompt_tokens || 0,
+          output: data.usage.completion_tokens || 0,
+        };
+      });
+      const contentGPT: string = data.choices?.[0]?.message?.content || "";
+      setTextTranslated(contentGPT);
+      setButtonText(contentGPT);
     } else if (textTranslated === buttonText) {
       setButtonText(word);
     } else {

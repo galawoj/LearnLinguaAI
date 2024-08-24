@@ -32,23 +32,20 @@ export default function ButtonRandomTopic({ onChangeTopicHandler }: propsType) {
         },
       ],
     };
-    try {
-      const data = await fetchGptResponse(apiRequestBody);
-      const reg = /^"|"$/g;
 
-      const contentGPT: string = data.choices?.[0]?.message?.content || "";
-      onChangeTopicHandler(contentGPT.replace(reg, ""));
-      setNumberOfTokens(() => {
-        return {
-          input: data.usage.prompt_tokens || 0,
-          output: data.usage.completion_tokens || 0,
-        };
-      });
-    } catch (error) {
-      console.log("Error fetching GPT response:", error);
-    } finally {
-      setIsTyping(false);
-    }
+    const data = await fetchGptResponse(apiRequestBody);
+    const reg = /^"|"$/g;
+
+    const contentGPT: string = data.choices?.[0]?.message?.content || "";
+    onChangeTopicHandler(contentGPT.replace(reg, ""));
+    setNumberOfTokens(() => {
+      return {
+        input: data.usage.prompt_tokens || 0,
+        output: data.usage.completion_tokens || 0,
+      };
+    });
+
+    setIsTyping(false);
   }
 
   return (
