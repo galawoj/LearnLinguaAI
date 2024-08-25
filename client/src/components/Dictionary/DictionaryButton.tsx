@@ -20,6 +20,18 @@ export default function DictionaryButton({ word, translatedWord }: propsType) {
       >
         {!isClicked ? word : translatedWord}
       </button>
+      <span
+        style={{
+          display: "flex",
+          alignItems: "center",
+          position: "relative",
+          right: "-30px",
+
+          opacity: "50%",
+        }}
+      >
+        X
+      </span>
     </>
   );
 }

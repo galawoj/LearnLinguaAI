@@ -14,7 +14,7 @@ function localStorageTest (){
 export default function getFromLocalStorage (name:string){
 
     if(localStorageTest ()){
-        const storage= JSON.parse(localStorage.getItem(`${name}`) || '')
+        const storage= JSON.parse(localStorage.getItem(`${name}`) || '[]') 
 
         return storage
     }
