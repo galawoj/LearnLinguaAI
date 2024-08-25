@@ -1,3 +1,4 @@
+
 function localStorageTest (){
     const test = "test" +new Date().valueOf()
     try{
@@ -9,15 +10,10 @@ function localStorageTest (){
     }
 }
 
-
-
-export default function getArrayFromLocalStorage (arr:string){
-
-    if( localStorageTest ()){
-        const dictionary= JSON.parse(localStorage.getItem(`${arr}`) || '[]')
-
-        return dictionary
-    }
-
+export default function setArrayInLocalStorage(name:string,obj:object|object[]){
+    
+if(localStorageTest()){
+    localStorage.setItem(`${name}`,JSON.stringify(obj))
+}
 
 }

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "../../store/app-context";
 import DictionaryButton from "./DictionaryButton";
-import setArrayInLocalStorage from "../../utils/setArrayInLocalStorage";
-import getArrayFromLocalStorage from "../../utils/getArrayFromLocalStorage";
+import setInLocalStorage from "../../utils/setInLocalStorage";
+import getFromLocalStorage from "../../utils/getFromLocalStorage";
 import { DictionaryElement } from "../../types/DisctionaryElementType";
 import styles from "./dictionary.module.scss";
 
@@ -18,18 +18,19 @@ export default function Dictionary() {
   useEffect(() => {
     if (isFirstRender) {
       const dictionaryListFromStorage: DictionaryElement[] =
-        getArrayFromLocalStorage("dictionary");
+        getFromLocalStorage("dictionary");
+      if (dictionaryListFromStorage) {
+        setCurrentDictionaryList(dictionaryListFromStorage);
 
-      setCurrentDictionaryList(dictionaryListFromStorage);
-
-      for (let listElement of dictionaryListFromStorage) {
-        dictionaryAddElement(listElement);
+        for (let listElement of dictionaryListFromStorage) {
+          dictionaryAddElement(listElement);
+        }
       }
+
       setIsFirstRender(false);
     } else {
       setCurrentDictionaryList(dictionaryList);
-      setArrayInLocalStorage("dictionary", dictionaryList);
-      console.log(1);
+      setInLocalStorage("dictionary", dictionaryList);
     }
   }, [dictionaryList]);
 
