@@ -36,7 +36,7 @@ export default function Dictionary() {
 
   const currentListElement = currentDictionaryList.map((e) => (
     <li key={e.id} className={styles.listElement}>
-      <DictionaryButton word={e.word} translatedWord={e.translatedWord} />
+      <DictionaryButton dictionaryElement={e} />
     </li>
   ));
 

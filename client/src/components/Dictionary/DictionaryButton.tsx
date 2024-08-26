@@ -1,12 +1,13 @@
 import { useState } from "react";
 import styles from "./dictionary.module.scss";
+import RemoveButton from "./RemoveButton";
+import { DictionaryElement } from "../../types/DisctionaryElementType";
 
-type propsType = {
-  word: string;
-  translatedWord: string;
-};
-
-export default function DictionaryButton({ word, translatedWord }: propsType) {
+export default function DictionaryButton({
+  dictionaryElement,
+}: {
+  dictionaryElement: DictionaryElement;
+}) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
   function buttonHandler() {
@@ -18,20 +19,9 @@ export default function DictionaryButton({ word, translatedWord }: propsType) {
         onClick={buttonHandler}
         className={`${styles.button} ${isClicked && styles.buttonClicked} `}
       >
-        {!isClicked ? word : translatedWord}
+        {!isClicked ? dictionaryElement.word : dictionaryElement.translatedWord}
       </button>
-      <span
-        style={{
-          display: "flex",
-          alignItems: "center",
-          position: "relative",
-          right: "-30px",
-
-          opacity: "50%",
-        }}
-      >
-        X
-      </span>
+      <RemoveButton removingElement={dictionaryElement} />
     </>
   );
 }

@@ -27,6 +27,7 @@ type AppContexType = {
   setTransaltionReset: (value: boolean) => void;
   setTextTopic: (text: string) => void;
   dictionaryAddElement: (element: DictionaryElement) => void;
+  dictionaryRemoveElement: (element: DictionaryElement) => void;
 
   setMessagesToRequest: (message: MessageToRequestType[]) => void;
   setMessagesToDisplay: (message: MessageToDisplayType[]) => void;
@@ -76,6 +77,16 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
 
     setDictionaryList((dictionary) => {
       const updatedDictionary = [...dictionary, element];
+      return updatedDictionary;
+    });
+  }
+
+  function dictionaryRemoveElement(element: DictionaryElement) {
+    setDictionaryList((dictionary) => {
+      const updatedDictionary = dictionary.filter(
+        (dictionaryElement) => dictionaryElement.id !== element.id
+      );
+
       return updatedDictionary;
     });
   }
@@ -137,6 +148,7 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     setTransaltionReset: setTransaltionReset,
     setTextTopic: setTextTopic,
     dictionaryAddElement: dictionaryAddElement,
+    dictionaryRemoveElement: dictionaryRemoveElement,
     setMessagesToRequest: setMessagesToRequest,
     setMessagesToDisplay: setMessagesToDisplay,
     setNumberOfTokens: setNumberOfTokens,
