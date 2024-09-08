@@ -1,7 +1,7 @@
 import ButtonGenerator from "../../components/ButtonGenerator/ButtonGenerator";
 
-import { TextGenerator } from "../../components/TextGenerator/TextGenerator";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { TextDisplay } from "../../components/TextDisplay/TextDisplay";
+
 import { faClipboard, faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import { faGear, faUser } from "@fortawesome/free-solid-svg-icons";
 import styles from "./mainApp.module.scss";
@@ -11,6 +11,8 @@ import LanguageLevel from "../../components/LanguageLevel/LanguageLevel";
 import Dictionary from "../../components/Dictionary/Dictionary";
 import TopicTextArea from "../../components/TopicTextArea/TopicTextArea";
 import TokensCounter from "../../components/TokensCounter/TokensCounter";
+import ContentContainer from "./components/ContentContainer";
+import Label from "./components/Label";
 
 export default function MainApp() {
   return (
@@ -20,45 +22,38 @@ export default function MainApp() {
         <input type="radio" name="group" id="dictionary" />
         <input type="radio" name="group" id="setting" />
         <input type="radio" name="group" id="profil" />
+
         <div className={styles.icon}>
-          <label htmlFor="home">
-            <FontAwesomeIcon icon={faBookOpen} />
-          </label>
-          <label htmlFor="dictionary">
-            <FontAwesomeIcon icon={faClipboard} />
-          </label>
-          <label htmlFor="setting">
-            <FontAwesomeIcon icon={faGear} />
-          </label>
-          <label htmlFor="profil">
-            <FontAwesomeIcon icon={faUser} />
-          </label>
+          <Label htmlFor={"home"} icon={faBookOpen} />
+          <Label htmlFor={"dictionary"} icon={faClipboard} />
+          <Label htmlFor={"setting"} icon={faGear} />
+          <Label htmlFor={"profil"} icon={faUser} />
           <div className={styles.indicator}></div>
         </div>
         <div className={styles.content}>
-          <div className={styles.contentBx} data-for="home">
-            {/* <h2><TextTitle /></h2> */}
-
-            <TextGenerator />
+          <ContentContainer dataFor={"home"}>
+            <TextDisplay />
             <ButtonGenerator />
-          </div>
-          <div className={styles.contentBx} data-for="dictionary">
-            <h2>Słownik</h2>
+          </ContentContainer>
 
+          <ContentContainer dataFor={"dictionary"}>
+            <h2>Słownik</h2>
             <Dictionary />
-          </div>
-          <div className={styles.contentBx} data-for="setting">
+          </ContentContainer>
+
+          <ContentContainer dataFor={"setting"}>
             <h2>Preferencje</h2>
             <div>
               <label>Poziom języka</label>
               <LanguageLevel />
               <TopicTextArea />
             </div>
-          </div>
-          <div className={styles.contentBx} data-for="profil">
+          </ContentContainer>
+
+          <ContentContainer dataFor={"profil"}>
             <h2>Profil</h2>
             <TokensCounter />
-          </div>
+          </ContentContainer>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import styles from "./intro.module.scss";
 import TypingText from "../../components/TypingText/TypingText";
 import { TogglePages } from "../../types/TogglePagesType";
+import BackgroundShapes from "../../components/BackgroundShapes/BackgroundShapes";
 
 type IntroProps = {
   onHandleChangePage: (page: TogglePages) => void;
@@ -9,10 +10,7 @@ type IntroProps = {
 export default function Intro({ onHandleChangePage }: IntroProps) {
   return (
     <>
-      <div className={styles.background}>
-        <div className={styles.shape}></div>
-        <div className={styles.shape}></div>
-      </div>
+      <BackgroundShapes />
       <div className={styles.card}>
         <h3>Gotowy na podróż językową?</h3>
         <span>

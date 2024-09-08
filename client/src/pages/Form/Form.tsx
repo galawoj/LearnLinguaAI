@@ -4,6 +4,7 @@ import styles from "./form.module.scss";
 import { useAppContext } from "../../store/app-context";
 import { TogglePages } from "../../types/TogglePagesType";
 import ButtonRandomTopic from "../../components/ButtonRandomTopic/ButtonRandomTopic";
+import BackgroundShapes from "../../components/BackgroundShapes/BackgroundShapes";
 
 type FormProps = {
   onHandleChangePage: (page: TogglePages) => void;
@@ -25,10 +26,7 @@ export default function Form({ onHandleChangePage }: FormProps) {
 
   return (
     <>
-      <div className={styles.background}>
-        <div className={styles.shape}></div>
-        <div className={styles.shape}></div>
-      </div>
+      <BackgroundShapes />
       <form onSubmit={handleSubmit}>
         <label>Poziom języka</label>
         <LanguageLevel />

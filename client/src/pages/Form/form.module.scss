@@ -1,13 +1,4 @@
 
-.background{
-    width:430px;
-    height:520px;
-    
-    position:absolute;
-    transform: translate(-50%,-50%);
-    left:50%;
-    top:50%;
-    }
     
     form{
        
@@ -77,31 +68,7 @@ label{
     opacity: 50%;
 }
 
-     .shape{
-      height:200px;
-      width:200px;
-      position:absolute;
-    border-radius: 50%;
-    }
-    
-    .shape:first-child{
-      background: linear-gradient(
-        #9b22ea,
-        #bf23f6
-      );
-      left:-80px;
-      top:-80px;
-    }
-    
-    .shape:last-child{
-      background: linear-gradient(
-        to right,
-        #ff512f,
-        #f09819
-      );
-      right: -30px;
-      bottom:-80px;
-    }
+   
     
     button{
       margin-top:50px;
@@ -123,24 +90,5 @@ label{
         border-radius: 0px;
 
       }
-      .background{
-        width:100vw;
-
-      }
-      .shape{
-        height:100px;
-        width:100px
-      }
-
-      .shape:first-child{
-
-        left:100px;
-        top:80px;
-      }
-      
-      .shape:last-child{
-
-        right: 100px;
-        bottom:80px;
-      }
+   
     }

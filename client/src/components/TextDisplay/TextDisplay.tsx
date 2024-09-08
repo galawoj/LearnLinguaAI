@@ -1,7 +1,7 @@
 import { useAppContext } from "../../store/app-context";
-import styles from "./textGenerator.module.scss";
+import styles from "./textDisplay.module.scss";
 
-export function TextGenerator() {
+export function TextDisplay() {
   const { messagesToDisplay } = useAppContext();
 
   const gptMessage = messagesToDisplay.map(({ message, id }) => {
