@@ -7,6 +7,8 @@ import { type DictionaryElement } from "../types/DisctionaryElementType";
 import { type NumberOfTokensType } from "../types/NumberOfTokensType";
 import { processMessageToChatGPT } from "../utils/ProcessMessageToChatGPT";
 import { LevelType } from "../types/LevelType";
+import randomElementsFromArray from "../utils/randomElementsFromArray";
+import getFromLocalStorage from "../utils/getFromLocalStorage";
 
 type AppContexType = {
   typing: boolean;
@@ -92,21 +94,29 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
   }
 
   const generateHandle = async () => {
+    const dictionaryListFromStorage: DictionaryElement[] =
+      getFromLocalStorage("dictionary");
+
+    dictionaryListFromStorage?.map(dictionaryAddElement);
+
+    const wordList =
+      (isFirstText ? dictionaryListFromStorage : dictionaryList) ?? [];
+
+    const wordsToAttach =
+      wordList.length > 0
+        ? `use words: ${randomElementsFromArray(wordList, 5).map((e) => {
+            return e.word;
+          })}`
+        : wordList;
+
     const newMessage: MessageToRequestType = {
       message: isFirstText
-        ? `generate a 50-word text on the topic: '${textTopic}'`
-        : `Continue the previous text by generating another 50 words,${
-            dictionaryList &&
-            "use words:" +
-              dictionaryList.map((e) => {
-                return e.word;
-              })
-          } `,
+        ? `generate a 50-word text on the topic: '${textTopic}',${wordsToAttach} `
+        : `Continue the previous text by generating another 50 words, ${wordsToAttach}`,
       sender: "user",
       direction: "outgoing",
       position: "normal",
     };
-
     const newMessagesToRequest: MessageToRequestType[] = [
       ...messagesToRequest,
       newMessage,

@@ -6,6 +6,7 @@ import Intro from "./pages/Intro/Intro";
 import MainApp from "./pages/MainApp/MainApp";
 
 import { AppContextProvider } from "./store/app-context";
+import BackgroundShapes from "./components/BackgroundShapes/BackgroundShapes";
 
 function App() {
   const [whichPageOpen, setWhichPageOpen] = useState<TogglePages>("intro");
@@ -16,8 +17,10 @@ function App() {
 
   return (
     <AppContextProvider>
-      {/* <Intro onHandleChangePage={handleChangePage} />
-      <MainApp /> */}
+      {(whichPageOpen === "intro" || whichPageOpen === "form") && (
+        <BackgroundShapes />
+      )}
+
       {whichPageOpen === "intro" && (
         <Intro onHandleChangePage={handleChangePage} />
       )}
