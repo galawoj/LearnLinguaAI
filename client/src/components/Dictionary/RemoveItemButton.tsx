@@ -1,18 +1,17 @@
 import { useAppContext } from "../../store/app-context";
-import { DictionaryElement } from "../../types/DisctionaryElementType";
-import style from "./dictionary.module.scss";
 
-export default function RemoveButton({
-  removingElement,
-}: {
-  removingElement: DictionaryElement;
-}) {
+import style from "./dictionary.module.scss";
+import { useDictionaryItemContext } from "./DictionaryItem";
+
+export default function RemoveItemButton() {
+  const { dictionaryElement } = useDictionaryItemContext();
+
   const { dictionaryRemoveElement } = useAppContext();
 
   return (
     <button
       className={style.removeButton}
-      onClick={() => dictionaryRemoveElement(removingElement)}
+      onClick={() => dictionaryRemoveElement(dictionaryElement)}
     >
       X
     </button>

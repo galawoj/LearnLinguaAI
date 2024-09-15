@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 import { useAppContext } from "../../store/app-context";
-import DictionaryButton from "./DictionaryButton";
+import DictionaryItem from "./DictionaryItem";
 import setInLocalStorage from "../../utils/setInLocalStorage";
-
-import styles from "./dictionary.module.scss";
 
 export default function Dictionary() {
   const { dictionaryList } = useAppContext();
@@ -13,9 +11,9 @@ export default function Dictionary() {
   }, [dictionaryList]);
 
   const currentListElement = dictionaryList.map((e) => (
-    <li key={e.id} className={styles.listElement}>
-      <DictionaryButton dictionaryElement={e} />
-    </li>
+    <DictionaryItem dictionaryElement={e}>
+      <DictionaryItem.RemoveButton />
+    </DictionaryItem>
   ));
 
   return <ul>{currentListElement}</ul>;
