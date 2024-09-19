@@ -1,7 +1,7 @@
 import { useState, createContext, useContext } from "react";
 import styles from "./dictionary.module.scss";
 import RemoveItemButton from "./RemoveItemButton.tsx";
-import { DictionaryElement } from "../../types/DisctionaryElementType";
+import { DictionaryElement } from "../../types/DictionaryElementType.ts";
 
 type propsDictionaryItemType = {
   dictionaryElement: DictionaryElement;
@@ -39,7 +39,7 @@ export default function DictionaryItem({
 
   return (
     <DictionaryCtx.Provider value={ctx}>
-      <li key={dictionaryElement.id} className={styles.listElement}>
+      <li className={styles.listElement}>
         <button
           onClick={buttonHandler}
           className={`${styles.button} ${isClicked && styles.buttonClicked} `}

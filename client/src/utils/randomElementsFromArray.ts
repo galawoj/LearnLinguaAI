@@ -13,7 +13,7 @@ export default function randomElementsFromArray<T>(
       randArray.push(duplicateArray[randIndex]);
       duplicateArray.splice(randIndex, 1);
     }
-    console.log(randArray);
+
     return randArray;
   }
 }

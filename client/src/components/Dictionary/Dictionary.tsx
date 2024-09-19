@@ -11,7 +11,7 @@ export default function Dictionary() {
   }, [dictionaryList]);
 
   const currentListElement = dictionaryList.map((e) => (
-    <DictionaryItem dictionaryElement={e}>
+    <DictionaryItem dictionaryElement={e} key={e.id}>
       <DictionaryItem.RemoveButton />
     </DictionaryItem>
   ));

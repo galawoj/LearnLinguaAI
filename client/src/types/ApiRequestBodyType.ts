@@ -1,7 +1,7 @@
 import { type ModelType } from "./ModelType";
-import { type ApiMessageType } from "./ApiMessageType";
+import { type DialogueElementType } from "./DialogueElementType";
 
 export type ApiRequestBodyType = {
     model: ModelType,
-    messages: ApiMessageType[],
+    messages: DialogueElementType[],
   };

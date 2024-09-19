@@ -1,6 +1,6 @@
 import { useAppContext } from "../../store/app-context";
 import { type ApiRequestBodyType } from "../../types/ApiRequestBodyType";
-import { type ApiMessageType } from "../../types/ApiMessageType";
+import { type DialogueElementType } from "../../types/DialogueElementType";
 import { fetchGptResponse } from "../../api/fetchGptResponse";
 import styles from "./buttonRandomTopic.module.scss";
 import { useState } from "react";
@@ -14,8 +14,7 @@ export default function ButtonRandomTopic({ onChangeTopicHandler }: propsType) {
 
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
-  //   const [randomTopic, setRandomTopic] = useState<string>("");
-  const systemMessage: ApiMessageType = {
+  const systemMessage: DialogueElementType = {
     role: "system",
     content: `generate text only in Polish`,
   };

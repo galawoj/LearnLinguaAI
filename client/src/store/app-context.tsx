@@ -1,19 +1,19 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 
-import { type MessageToDisplayType } from "../types/MessageToDisplayType";
+import { type DialogueElementType } from "../types/DialogueElementType";
 import { type ModelType } from "../types/ModelType";
-import { type MessageToRequestType } from "../types/MessageToRequestType";
-import { type DictionaryElement } from "../types/DisctionaryElementType";
+
+import { type DictionaryElement } from "../types/DictionaryElementType";
 import { type NumberOfTokensType } from "../types/NumberOfTokensType";
-import { processMessageToChatGPT } from "../utils/ProcessMessageToChatGPT";
+
 import { LevelType } from "../types/LevelType";
 import randomElementsFromArray from "../utils/randomElementsFromArray";
 import getFromLocalStorage from "../utils/getFromLocalStorage";
+import { processDialogueGpt } from "../utils/processDialogueGpt";
 
 type AppContexType = {
   typing: boolean;
-  messagesToDisplay: MessageToDisplayType[];
-  messagesToRequest: MessageToRequestType[];
+  dialogueWithGpt: DialogueElementType[];
   isFirstText: boolean;
   GPTModel: ModelType;
   languageLevel: LevelType;
@@ -30,9 +30,7 @@ type AppContexType = {
   setTextTopic: (text: string) => void;
   dictionaryAddElement: (element: DictionaryElement) => void;
   dictionaryRemoveElement: (element: DictionaryElement) => void;
-
-  setMessagesToRequest: (message: MessageToRequestType[]) => void;
-  setMessagesToDisplay: (message: MessageToDisplayType[]) => void;
+  setDialogueWithGpt: (message: DialogueElementType[]) => void;
   setNumberOfTokens: React.Dispatch<React.SetStateAction<NumberOfTokensType>>;
 };
 
@@ -57,12 +55,10 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
   );
   const [GPTModel, setGPTModel] = useState<ModelType>("gpt-3.5-turbo");
   const [typing, setTyping] = useState<boolean>(false);
-  const [messagesToRequest, setMessagesToRequest] = useState<
-    MessageToRequestType[]
-  >([]);
-  const [messagesToDisplay, setMessagesToDisplay] = useState<
-    MessageToDisplayType[]
-  >([]);
+  const [dialogueWithGpt, setDialogueWithGpt] = useState<DialogueElementType[]>(
+    []
+  );
+
   const [isFirstText, setIsFirstText] = useState<boolean>(true);
   const [translationReset, setTransaltionReset] = useState<boolean>(false);
   const [textTopic, setTextTopic] = useState<string>("");
@@ -109,27 +105,24 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
           })}`
         : wordList;
 
-    const newMessage: MessageToRequestType = {
-      message: isFirstText
+    const newDialogueElement: DialogueElementType = {
+      content: isFirstText
         ? `generate a 50-word text on the topic: '${textTopic}',${wordsToAttach} `
         : `Continue the previous text by generating another 50 words, ${wordsToAttach}`,
-      sender: "user",
-      direction: "outgoing",
-      position: "normal",
+      role: "user",
     };
-    const newMessagesToRequest: MessageToRequestType[] = [
-      ...messagesToRequest,
-      newMessage,
+    const newDialogue: DialogueElementType[] = [
+      ...dialogueWithGpt,
+      newDialogueElement,
     ];
 
-    setMessagesToRequest(newMessagesToRequest);
+    setDialogueWithGpt(newDialogue);
     setTyping(true);
 
-    await processMessageToChatGPT({
+    await processDialogueGpt({
       GPTModel,
-      chatMessages: newMessagesToRequest,
-      setMessagesToRequest,
-      setMessagesToDisplay,
+      chatMessages: newDialogue,
+      setDialogueWithGpt,
       setTyping,
       languageLevel,
       setNumberOfTokens,
@@ -141,8 +134,8 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
 
   const ctxValue: AppContexType = {
     typing: typing,
-    messagesToDisplay: messagesToDisplay,
-    messagesToRequest: messagesToRequest,
+
+    dialogueWithGpt: dialogueWithGpt,
     isFirstText: isFirstText,
     GPTModel: GPTModel,
     languageLevel: languageLevel,
@@ -159,8 +152,8 @@ export function AppContextProvider({ children }: PropsAppContextProvider) {
     setTextTopic: setTextTopic,
     dictionaryAddElement: dictionaryAddElement,
     dictionaryRemoveElement: dictionaryRemoveElement,
-    setMessagesToRequest: setMessagesToRequest,
-    setMessagesToDisplay: setMessagesToDisplay,
+    setDialogueWithGpt: setDialogueWithGpt,
+
     setNumberOfTokens: setNumberOfTokens,
   };
   return <AppContext.Provider value={ctxValue}>{children}</AppContext.Provider>;
