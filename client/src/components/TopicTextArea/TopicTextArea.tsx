@@ -4,26 +4,19 @@ import { useAppContext } from "../../store/app-context";
 import ButtonRandomTopic from "../ButtonRandomTopic/ButtonRandomTopic";
 
 export default function TopicTextArea() {
-  const {
-    textTopic,
-    setTextTopic,
-    setIsFirstText,
-    setMessagesToRequest,
-    setMessagesToDisplay,
-  } = useAppContext();
+  const { textTopic, setTextTopic, setIsFirstText, setDialogueWithGpt } =
+    useAppContext();
   const textArea = useRef<HTMLTextAreaElement>(null);
 
   function textAreaChanger() {
     setTextTopic(textArea.current?.value as string);
     setIsFirstText(true);
-    setMessagesToRequest([]);
-    setMessagesToDisplay([]);
+    setDialogueWithGpt([]);
   }
   function onChangeTopicHandler(topic: string) {
     setTextTopic(topic);
     setIsFirstText(true);
-    setMessagesToRequest([]);
-    setMessagesToDisplay([]);
+    setDialogueWithGpt([]);
   }
   return (
     <>
