@@ -2,9 +2,10 @@ import { Dispatch, SetStateAction } from "react";
 import { type DialogueElementType } from "../types/DialogueElementType";
 import { type ModelType } from "../types/ModelType";
 import { type ApiRequestBodyType } from "../types/ApiRequestBodyType";
+import { type LevelType } from "../types/LevelType";
+import { type NumberOfTokensType } from "../types/NumberOfTokensType";
+
 import { fetchGptResponse } from "../api/fetchGptResponse";
-import { LevelType } from "../types/LevelType";
-import { NumberOfTokensType } from "../types/NumberOfTokensType";
 
 type argsType = {
   GPTModel: ModelType;

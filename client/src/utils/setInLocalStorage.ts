@@ -1,6 +1,6 @@
 
 function localStorageTest (){
-    const test = "test" +new Date().valueOf()
+    const test = "test" + new Date().valueOf()
     try{
         localStorage.setItem(test,test)
         localStorage.removeItem(test)
